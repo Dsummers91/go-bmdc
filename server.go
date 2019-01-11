@@ -4,6 +4,7 @@ import (
 	"log"
 	"net/http"
 
+	"./database"
 	"./routes/callback"
 	"./routes/home"
 	"./routes/login"
@@ -11,7 +12,6 @@ import (
 	"./routes/middlewares"
 	"./routes/user"
 	"github.com/codegangsta/negroni"
-	"github.com/dsummers91/auth0-golang-web-app/01-Login/database"
 	"github.com/gorilla/mux"
 )
 
