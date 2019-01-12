@@ -1,8 +1,9 @@
 package middlewares
 
 import (
-	"../../app"
 	"net/http"
+
+	"github.com/dsummers91/go-bmdc/app"
 )
 
 func IsAuthenticated(w http.ResponseWriter, r *http.Request, next http.HandlerFunc) {

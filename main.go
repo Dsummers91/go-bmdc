@@ -3,7 +3,8 @@ package main
 import (
 	"log"
 
-	"./app"
+	"github.com/dsummers91/go-bmdc/app"
+	"github.com/dsummers91/go-bmdc/server"
 	"github.com/joho/godotenv"
 )
 
@@ -15,6 +16,6 @@ func main() {
 	}
 
 	app.Init()
-	StartServer()
+	server.StartServer()
 
 }

@@ -1,10 +1,11 @@
 package home
 
 import (
-	templates ".."
 	"html/template"
 	"net/http"
 	"os"
+
+	"github.com/dsummers91/go-bmdc/routes/templates"
 )
 
 func HomeHandler(w http.ResponseWriter, r *http.Request) {

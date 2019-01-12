@@ -1,17 +1,17 @@
-package main
+package server
 
 import (
 	"log"
 	"net/http"
 
-	"./database"
-	"./routes/callback"
-	"./routes/home"
-	"./routes/login"
-	"./routes/logout"
-	"./routes/middlewares"
-	"./routes/user"
 	"github.com/codegangsta/negroni"
+	"github.com/dsummers91/go-bmdc/database"
+	"github.com/dsummers91/go-bmdc/routes/callback"
+	"github.com/dsummers91/go-bmdc/routes/home"
+	"github.com/dsummers91/go-bmdc/routes/login"
+	"github.com/dsummers91/go-bmdc/routes/logout"
+	"github.com/dsummers91/go-bmdc/routes/middlewares"
+	"github.com/dsummers91/go-bmdc/routes/user"
 	"github.com/gorilla/mux"
 )
 

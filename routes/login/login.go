@@ -1,12 +1,13 @@
 package login
 
 import (
-	"golang.org/x/oauth2"
-	"net/http"
-	"os"
 	"crypto/rand"
 	"encoding/base64"
-	"../../app"
+	"net/http"
+	"os"
+
+	"github.com/dsummers91/go-bmdc/app"
+	"golang.org/x/oauth2"
 )
 
 func LoginHandler(w http.ResponseWriter, r *http.Request) {

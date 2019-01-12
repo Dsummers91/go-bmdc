@@ -4,9 +4,9 @@ import (
 	"log"
 	"net/http"
 
-	templates ".."
-	"../../app"
-	"../../database"
+	"github.com/dsummers91/go-bmdc/app"
+	"github.com/dsummers91/go-bmdc/database"
+	"github.com/dsummers91/go-bmdc/routes/templates"
 	"github.com/mongodb/mongo-go-driver/bson"
 )
 
