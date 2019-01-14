@@ -1,8 +1,7 @@
 .env
 .DS_Store
 src/
-main
-blackmendontcheat-server
+bmdc-server
 pkg/
 vendor/
 
