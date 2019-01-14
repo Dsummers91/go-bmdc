@@ -23,10 +23,11 @@ func StartServer() {
 	r.HandleFunc("/login", login.LoginHandler)
 	r.HandleFunc("/logout", logout.LogoutHandler)
 	r.HandleFunc("/callback", callback.CallbackHandler)
-	r.Handle("/user", negroni.New(
+	r.Handle("/settings", negroni.New(
 		negroni.HandlerFunc(middlewares.IsAuthenticated),
-		negroni.Wrap(http.HandlerFunc(user.UserHandler)),
+		negroni.Wrap(http.HandlerFunc(user.UserSettingsHandler)),
 	))
+	r.HandleFunc("/user/{user}", user.UserHandler)
 	r.PathPrefix("/public/").Handler(http.StripPrefix("/public/", http.FileServer(http.Dir("public/"))))
 	http.Handle("/", r)
 	log.Print("Server listening on http://localhost:3000/")

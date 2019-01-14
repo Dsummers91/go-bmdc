@@ -16,3 +16,7 @@ func Establish_connection() {
 
 	Client.Connect(Context)
 }
+
+func GetUser(username string) {
+
+}

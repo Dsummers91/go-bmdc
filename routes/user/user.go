@@ -1,16 +1,19 @@
 package user
 
 import (
+	"fmt"
+	"io"
 	"log"
 	"net/http"
 
 	"github.com/dsummers91/go-bmdc/app"
 	"github.com/dsummers91/go-bmdc/database"
 	"github.com/dsummers91/go-bmdc/routes/templates"
+	"github.com/gorilla/mux"
 	"github.com/mongodb/mongo-go-driver/bson"
 )
 
-func UserHandler(w http.ResponseWriter, r *http.Request) {
+func UserSettingsHandler(w http.ResponseWriter, r *http.Request) {
 	values := make(map[interface{}]interface{})
 	database.Establish_connection()
 	client := database.Client
@@ -42,4 +45,13 @@ func UserHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	values["profile"] = session.Values["profile"]
 	templates.RenderTemplate(w, "user", values)
+}
+
+func UserHandler(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	user := vars["user"]
+	fmt.Println(user)
+	w.WriteHeader(http.StatusOK)
+	w.Header().Set("Content-Type", "application/json")
+	io.WriteString(w, `{"alive": true}`)
 }

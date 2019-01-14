@@ -20,6 +20,36 @@
                 <a id="qsLoginBtn" class="btn btn-primary btn-lg btn-block" href="/login">SignIn</a>
               </div>
             </div>
+            <!-- link example -->
+            <a href="https://thisismotivation.foxycart.com/cart?name=Cool+Example||b0d0de44f9cf71888f30e58c1bf4e1f6703b6c51036eb1f9e9a6f5c121170e16&price=10||b0fdf3e69a8d9fd553fc99ce11a616edb80aae601149c0c844bd0feca0e2f2bc&color=red||692af71e1bda3d7ba66548ba9808a4839762f9c3abf312ac1f413788e8f9d626&code=sku123||30b1dfd7434328bc894fa8056f67400c4e0dbd1b366fac81b7d6ec2220b8a65f">Add a red Cool Example</a>
+            <!-- form example -->
+            <form action="https://thisismotivation.foxycart.com/cart" method="post" accept-charset="utf-8">
+              <input type="hidden" name="name" value="Custom Product">
+              <input type="hidden" name="price" value="15">
+              <input type="hidden" name="code" value="sku123">
+              <input type="hidden" name="image" value="IMAGE_URL">
+              <select name="color">
+                <option value="">[ Select Color ]</option>
+                <option value="Red">Red</option>
+                <option value="White">White</option>
+                <option value="Blue">Blue</option>
+              </select>
+              <select name="Size">
+                <option value="">[ Select Size ]</option>
+                <option value="Small">Small</option>
+                <option value="Medium">Medium</option>
+                <option value="Large">Large</option>
+                <option value="X Large">X Large</option>
+                <option value="XX Large{p+2}">XX Large (+$2.00)</option>
+              </select>
+              <input type="submit" value="Add Custom Product">
+            </form>
+
+            
         </div>
+        <!-- FOXYCART -->
+        <script data-cfasync="false" src="https://cdn.foxycart.com/thisismotivation/loader.js" async defer></script>
+<!-- /FOXYCART -->
+
     </body>
 </html>
