@@ -2,5 +2,10 @@
 .DS_Store
 src/
 main
+blackmendontcheat-server
 pkg/
 vendor/
+
+*.swp
+*.swo
+
