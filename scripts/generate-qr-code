@@ -1,0 +1,5 @@
+#!/bin/bash
+
+qrencode -o qrcode.png $1
+
+#aws s3 sync 

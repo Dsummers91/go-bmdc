@@ -1,6 +1,7 @@
 package settings
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 
@@ -36,10 +37,12 @@ func SettingsHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	session, err := app.Store.Get(r, "auth-session")
+	fmt.Println(session)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 	values["profile"] = session.Values["profile"]
+	fmt.Println(values)
 	templates.RenderTemplate(w, "settings", values)
 }

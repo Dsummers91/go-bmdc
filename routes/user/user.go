@@ -9,7 +9,6 @@ import (
 	"github.com/dsummers91/go-bmdc/app"
 	"github.com/dsummers91/go-bmdc/database"
 	"github.com/dsummers91/go-bmdc/routes/templates"
-	"github.com/gorilla/mux"
 	"github.com/mongodb/mongo-go-driver/bson"
 )
 
@@ -44,13 +43,13 @@ func UserSettingsHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	values["profile"] = session.Values["profile"]
+	fmt.Println(values)
 	templates.RenderTemplate(w, "user", values)
 }
 
 func UserHandler(w http.ResponseWriter, r *http.Request) {
-	vars := mux.Vars(r)
-	user := vars["user"]
-	fmt.Println(user)
+	//vars := mux.Vars(r)
+	//user := vars["user"]
 	w.WriteHeader(http.StatusOK)
 	w.Header().Set("Content-Type", "application/json")
 	io.WriteString(w, `{"alive": true}`)

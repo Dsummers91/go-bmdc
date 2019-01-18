@@ -19,7 +19,7 @@
 		var OldCookies = window.Cookies;
 		var api = window.Cookies = factory();
 		api.noConflict = function () {
-			window.Cookies = OldCookies;
+			//window.Cookies = OldCookies;
 			return api;
 		};
 	}

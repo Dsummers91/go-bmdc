@@ -3,6 +3,7 @@ package login
 import (
 	"crypto/rand"
 	"encoding/base64"
+	"fmt"
 	"net/http"
 	"os"
 
@@ -36,6 +37,8 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 	state := base64.StdEncoding.EncodeToString(b)
 
 	session, err := app.Store.Get(r, "state")
+	fmt.Println(session)
+	fmt.Println(err)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
