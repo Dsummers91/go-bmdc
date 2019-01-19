@@ -10,8 +10,8 @@ import (
 
 func SettingsHandler(w http.ResponseWriter, r *http.Request) {
 	values := make(map[interface{}]interface{})
-	collection := database.Collection("users")
-	users := database.GetCollection(collection)
+	collection, context := database.Collection("members")
+	users := database.GetCollection(collection, context)
 	values["users"] = users
 
 	session, err := app.Store.Get(r, "auth-session")

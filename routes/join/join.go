@@ -39,8 +39,8 @@ func PostJoinHandler(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 	w.Header().Set("Content-Type", "application/json")
 
-	collection := database.Collection("users")
-	res, _ := collection.InsertOne(database.Context, bson.M{"name": user.Name, "email": user.Email})
+	collection, context := database.Collection("users")
+	res, _ := collection.InsertOne(context, bson.M{"name": user.Name, "email": user.Email})
 
 	json.NewEncoder(w).Encode(res)
 }
