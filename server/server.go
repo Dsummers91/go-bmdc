@@ -22,7 +22,8 @@ func StartServer() {
 	r := mux.NewRouter()
 
 	r.HandleFunc("/", home.HomeHandler)
-	r.HandleFunc("/join", join.JoinHandler)
+	r.HandleFunc("/join", join.GetJoinHandler).Methods("GET")
+	r.HandleFunc("/join", join.PostJoinHandler).Methods("POST")
 	r.HandleFunc("/login", login.LoginHandler)
 	r.HandleFunc("/logout", logout.LogoutHandler)
 	r.HandleFunc("/callback", callback.CallbackHandler)
@@ -33,6 +34,7 @@ func StartServer() {
 	r.HandleFunc("/user/{user}", user.UserHandler)
 	r.PathPrefix("/public/").Handler(http.StripPrefix("/public/", http.FileServer(http.Dir("public/"))))
 	http.Handle("/", r)
+
 	log.Print("Server listening on http://localhost:3000/")
 	http.ListenAndServe("0.0.0.0:3000", nil)
 }

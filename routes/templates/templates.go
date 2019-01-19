@@ -12,6 +12,10 @@ func RenderTemplate(w http.ResponseWriter, tmpl string, data interface{}) {
 	t, err := template.ParseFiles(
 		filepath.Join(cwd, "./routes/"+tmpl+"/"+tmpl+".html"),
 		filepath.Join(cwd, "./routes/templates/header.html"),
+		filepath.Join(cwd, "./routes/templates/navbar.html"),
+		filepath.Join(cwd, "./routes/templates/footer.html"),
+		filepath.Join(cwd, "./routes/templates/store.html"),
+		filepath.Join(cwd, "./routes/templates/signin.html"),
 	)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
