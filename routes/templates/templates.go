@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 )
 
-func RenderTemplate(w http.ResponseWriter, tmpl string, data interface{}) {
+func RenderTemplate(w http.ResponseWriter, r *http.Request, tmpl string, data interface{}) {
 	cwd, _ := os.Getwd()
 	t, err := template.ParseFiles(
 		filepath.Join(cwd, "./routes/"+tmpl+"/"+tmpl+".html"),
@@ -21,6 +21,18 @@ func RenderTemplate(w http.ResponseWriter, tmpl string, data interface{}) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
+	//session, err := app.Store.Get(r, "auth-session")
+	//if err != nil {
+	//		http.Error(w, err.Error(), http.StatusInternalServerError)
+	//	return
+	//}
+
+	//fmt.Println(data)
+	//if _, ok := session.Values["profile"]; !ok {
+	//data["profile"] = session.Values["profile"]
+	//data["isLoggedIn"] = true
+	//}
+
 	err = t.Execute(w, data)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)

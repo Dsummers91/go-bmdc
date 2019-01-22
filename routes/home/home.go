@@ -22,5 +22,5 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 		template.URL(os.Getenv("AUTH0_CALLBACK_URL")),
 	}
 
-	templates.RenderTemplate(w, "home", data)
+	templates.RenderTemplate(w, r, "home", data)
 }

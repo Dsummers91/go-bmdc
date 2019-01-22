@@ -19,7 +19,17 @@
                         <div class="hamburger-icon"></div>
                     </button>
 
-                    <ul class="nav-dropdown collapse pull-xs-right nav navbar-nav navbar-toggleable-sm" id="exCollapsingNavbar"><li class="nav-item"><a class="nav-link link" href="/#extFeatures12-t">BENEFITS</a></li><li class="nav-item"><a class="nav-link link" href="/#header3-8">ABOUT BMDC</a></li><li class="nav-item"><a class="nav-link link" href="/#extFeatures9-x">SPOTLIGHT</a></li><li class="nav-item"><a class="nav-link link" href="/#msg-box2-f">SHOP</a></li><li class="nav-item nav-btn"><a class="nav-link btn btn-white btn-white-outline" href="/join">JOIN US</a></li></ul>
+                    <ul class="nav-dropdown collapse pull-xs-right nav navbar-nav navbar-toggleable-sm" id="exCollapsingNavbar">
+                      <li class="nav-item"><a class="nav-link link" href="/#extFeatures12-t">BENEFITS</a></li>
+                      <li class="nav-item"><a class="nav-link link" href="/#header3-8">ABOUT BMDC</a></li>
+                      <li class="nav-item"><a class="nav-link link" href="/#extFeatures9-x">SPOTLIGHT</a></li>
+                      <li class="nav-item"><a class="nav-link link" href="/#msg-box2-f">SHOP</a></li>
+                      {{if .isLoggedIn }}
+                      <li class="nav-item nav-btn"><a class="nav-link btn btn-white btn-white-outline" href="/join">JOIN US</a></li>
+                      {{ else }}
+                      <li class="nav-item nav-btn"><a class="nav-link btn btn-main btn-main-outline" href="/profile">PROFILE</a></li>
+                      {{ end }}
+                    </ul>
                     <button hidden="" class="navbar-toggler navbar-close" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
                         <div class="close-icon"></div>
                     </button>

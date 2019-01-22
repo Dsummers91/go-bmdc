@@ -29,7 +29,7 @@ func GetJoinHandler(w http.ResponseWriter, r *http.Request) {
 		template.URL(os.Getenv("AUTH0_CALLBACK_URL")),
 	}
 
-	templates.RenderTemplate(w, "join", data)
+	templates.RenderTemplate(w, r, "join", data)
 }
 
 func PostJoinHandler(w http.ResponseWriter, r *http.Request) {

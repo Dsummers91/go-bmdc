@@ -3,7 +3,6 @@ package login
 import (
 	"crypto/rand"
 	"encoding/base64"
-	"fmt"
 	"net/http"
 	"os"
 
@@ -20,7 +19,7 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 		ClientID:     os.Getenv("AUTH0_CLIENT_ID"),
 		ClientSecret: os.Getenv("AUTH0_CLIENT_SECRET"),
 		RedirectURL:  os.Getenv("AUTH0_CALLBACK_URL"),
-		Scopes:       []string{"openid", "profile"},
+		Scopes:       []string{"openid", "profile", "email", "app_metadata"},
 		Endpoint: oauth2.Endpoint{
 			AuthURL:  "https://" + domain + "/authorize",
 			TokenURL: "https://" + domain + "/oauth/token",
@@ -37,8 +36,6 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 	state := base64.StdEncoding.EncodeToString(b)
 
 	session, err := app.Store.Get(r, "state")
-	fmt.Println(session)
-	fmt.Println(err)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return

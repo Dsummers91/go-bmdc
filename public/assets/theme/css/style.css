@@ -224,6 +224,11 @@
   border-color: #fff;
   box-shadow: none;
   color: #535353; }
+.btn-main {
+  background-color: #F1C050;
+  border-color: #F1C050;
+  box-shadow: none;
+ }
   .btn-white:hover {
     color: #fff;
     background-color: #d4d4d4;
@@ -379,10 +384,16 @@
     border-color: #f28281 !important;
     opacity: 0.85; }
 
-.btn-white-outline {
-  background: none;
-  border-color: #fff;
-  color: #fff; }
+    .btn-white-outline {
+      background: none;
+      border-color: #fff;
+    color: #fff; }
+
+  .btn-main-outline {
+    background: none;
+    border-color: #F1C050;
+  color: #F1C050; }
+
   .btn-white-outline:focus, .btn-white-outline.focus, .btn-white-outline:active, .btn-white-outline.active {
     color: #535353;
     background-color: #fff;

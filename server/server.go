@@ -31,6 +31,10 @@ func StartServer() {
 		negroni.HandlerFunc(middlewares.IsAuthenticated),
 		negroni.Wrap(http.HandlerFunc(settings.SettingsHandler)),
 	))
+	r.Handle("/profile", negroni.New(
+		negroni.HandlerFunc(middlewares.IsAuthenticated),
+		negroni.Wrap(http.HandlerFunc(user.CurrentUserHandler)),
+	))
 	r.HandleFunc("/user/{user}", user.UserHandler)
 	r.PathPrefix("/public/").Handler(http.StripPrefix("/public/", http.FileServer(http.Dir("public/"))))
 	http.Handle("/", r)
