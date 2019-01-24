@@ -3,6 +3,7 @@ package server
 import (
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/codegangsta/negroni"
 	"github.com/dsummers91/go-bmdc/database"
@@ -12,6 +13,7 @@ import (
 	"github.com/dsummers91/go-bmdc/routes/login"
 	"github.com/dsummers91/go-bmdc/routes/logout"
 	"github.com/dsummers91/go-bmdc/routes/middlewares"
+	"github.com/dsummers91/go-bmdc/routes/profile"
 	"github.com/dsummers91/go-bmdc/routes/settings"
 	"github.com/dsummers91/go-bmdc/routes/user"
 	"github.com/gorilla/mux"
@@ -31,14 +33,15 @@ func StartServer() {
 		negroni.HandlerFunc(middlewares.IsAuthenticated),
 		negroni.Wrap(http.HandlerFunc(settings.SettingsHandler)),
 	))
+	r.HandleFunc("/profile", profile.PostProfileHandler).Methods("POST")
 	r.Handle("/profile", negroni.New(
 		negroni.HandlerFunc(middlewares.IsAuthenticated),
 		negroni.Wrap(http.HandlerFunc(user.CurrentUserHandler)),
-	))
+	)).Methods("GET")
 	r.HandleFunc("/user/{user}", user.UserHandler)
 	r.PathPrefix("/public/").Handler(http.StripPrefix("/public/", http.FileServer(http.Dir("public/"))))
 	http.Handle("/", r)
 
-	log.Print("Server listening on http://localhost:3000/")
-	http.ListenAndServe("0.0.0.0:3000", nil)
+	log.Print("Server listening on http://localhost:" + os.Getenv("PORT"))
+	http.ListenAndServe("0.0.0.0:"+os.Getenv("PORT"), nil)
 }

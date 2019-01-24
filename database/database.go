@@ -15,16 +15,16 @@ func Establish_connection() {
 	Client, _ = mongo.NewClient("mongodb://localhost:27017")
 }
 
-func Collection(table string) (*mongo.Collection, context.Context) {
-	context := newContext()
+func Collection(table string) (*mongo.Collection, context.Context, context.CancelFunc) {
+	context, cancel := newContext()
 	Client.Connect(context)
 	collection := Client.Database("blackmendontcheat").Collection(table)
-	return collection, context
+	return collection, context, cancel
 }
 
-func newContext() context.Context {
-	ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
-	return ctx
+func newContext() (context.Context, context.CancelFunc) {
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	return ctx, cancel
 }
 
 func GetCollection(collection *mongo.Collection, ctx context.Context) []interface{} {

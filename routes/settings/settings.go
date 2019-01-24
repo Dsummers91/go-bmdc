@@ -9,7 +9,9 @@ import (
 
 func SettingsHandler(w http.ResponseWriter, r *http.Request) {
 	values := make(map[interface{}]interface{})
-	collection, context := database.Collection("members")
+	collection, context, cancel := database.Collection("members")
+	defer cancel()
+
 	users := database.GetCollection(collection, context)
 	values["users"] = users
 

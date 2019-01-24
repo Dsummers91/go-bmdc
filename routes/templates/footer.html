@@ -13,6 +13,14 @@
 <script src="/public/assets/mobirise3-blocks-plugin/js/script.js"></script>
 <script src="/public/assets/theme/js/script.js"></script>
 
+<script>
+  function myFunction() {
+    $.post( "/profile", { city: "blahd"})
+      .done(function( data ) {
+        alert( "Data Loaded: " + data );
+      });
+  }
+</script>
 
 <input name="animation" type="hidden">
 {{ end }}

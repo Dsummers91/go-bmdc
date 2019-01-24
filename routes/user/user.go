@@ -8,6 +8,19 @@ import (
 	"github.com/dsummers91/go-bmdc/routes/templates"
 )
 
+type User struct {
+	Email string `json:"email"`
+	Name  string `json:"name"`
+}
+
+type UserProfile struct {
+	Email   string `json:"email"`
+	Name    string `json:"name"`
+	Partner string `json:"partner"`
+	City    string `json:"city"`
+	State   string `json:"state"`
+}
+
 func UserHandler(w http.ResponseWriter, r *http.Request) {
 	//vars := mux.Vars(r)
 	//user := vars["user"]
