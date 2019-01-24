@@ -8,3 +8,5 @@ vendor/
 *.swp
 *.swo
 
+
+gin-bin

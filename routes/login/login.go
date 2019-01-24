@@ -7,6 +7,7 @@ import (
 	"os"
 
 	"github.com/dsummers91/go-bmdc/app"
+	"github.com/gorilla/sessions"
 	"golang.org/x/oauth2"
 )
 
@@ -41,6 +42,11 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	session.Values["state"] = state
+	session.Options = &sessions.Options{
+		Path:     "/",
+		MaxAge:   86400,
+		HttpOnly: true,
+	}
 	err = session.Save(r, w)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
