@@ -15,7 +15,6 @@ import (
 	"github.com/dsummers91/go-bmdc/routes/middlewares"
 	"github.com/dsummers91/go-bmdc/routes/profile"
 	"github.com/dsummers91/go-bmdc/routes/settings"
-	"github.com/dsummers91/go-bmdc/routes/user"
 	"github.com/gorilla/mux"
 )
 
@@ -36,9 +35,9 @@ func StartServer() {
 	r.HandleFunc("/profile", profile.PostProfileHandler).Methods("POST")
 	r.Handle("/profile", negroni.New(
 		negroni.HandlerFunc(middlewares.IsAuthenticated),
-		negroni.Wrap(http.HandlerFunc(user.CurrentUserHandler)),
+		negroni.Wrap(http.HandlerFunc(profile.GetProfileHandler)),
 	)).Methods("GET")
-	r.HandleFunc("/user/{user}", user.UserHandler)
+	r.HandleFunc("/profile/{id}", profile.GetUserProfileHandler).Methods("GET")
 	r.PathPrefix("/public/").Handler(http.StripPrefix("/public/", http.FileServer(http.Dir("public/"))))
 	http.Handle("/", r)
 

@@ -8,7 +8,7 @@ import (
 
 	"github.com/dsummers91/go-bmdc/database"
 	"github.com/dsummers91/go-bmdc/routes/templates"
-	"github.com/dsummers91/go-bmdc/routes/user"
+	"github.com/dsummers91/go-bmdc/user"
 	"github.com/mongodb/mongo-go-driver/bson"
 )
 
