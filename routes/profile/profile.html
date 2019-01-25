@@ -12,10 +12,11 @@
             <div class="row">
               <div class="col-xs-12 col-md-6 text-xs-center title-wrap">
 
-                <h3 class="mbr-section-title display-2 mbr-editable-content">{{.User.Username}}</h3>
+                  <h3 class="mbr-section-title display-2 mbr-editable-content">{{.User.Username}}</h3> 
+                  {{ if .IsUser }} <a href="/settings"><button>Edit Profile</button></a>{{ end }}
                 <div class="card cart-block">
                   <div class="feature-img">
-                    <img src="public/assets/images/action-adult-carry-1378866-600x400.jpg" class="card-img-top">
+                    <img src="/public/assets/images/action-adult-carry-1378866-600x400.jpg" class="card-img-top">
                   </div>
                 </div>
 

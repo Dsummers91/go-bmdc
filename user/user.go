@@ -1,15 +1,32 @@
 package user
 
 type User struct {
-	Email string `json:"email"`
-	Name  string `json:"name"`
+	Email    string `json:"email"`
+	Name     string `json:"name"`
+	Username string `json:"username"`
 }
 
 type UserProfile struct {
-	Email    string `json:"email"`
+	OauthID            string      `json:"-"`
+	Email              string      `json:"-"`
+	Username           string      `json:"-"`
+	Name               string      `json:"name"`
+	Partner            string      `json:"partner"`
+	City               string      `json:"city"`
+	State              string      `json:"state"`
+	Private            bool        `json:"private"`
+	UserSocialMedia    SocialMedia `json:"userSocialMedia"`
+	PartnerSocialMedia SocialMedia `json:"partnerSocialMedia"`
+}
+
+type SocialMedia struct {
+	Facebook SocialMediaProfile `json:"facebook"`
+	Twitter  SocialMediaProfile `json:"twitter"`
+	Snapchat SocialMediaProfile `json:"snapchat"`
+}
+
+type SocialMediaProfile struct {
 	Username string `json:"username"`
-	Name     string `json:"name"`
-	Partner  string `json:"partner"`
-	City     string `json:"city"`
-	State    string `json:"state"`
+	Email    string `json:"email"`
+	Private  bool   `json:"private"`
 }

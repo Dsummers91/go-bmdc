@@ -7,18 +7,21 @@ $(document).ready(function() {
 
 $("#editProfile").submit(function( event ) {
   event.preventDefault();
-  console.log(event)
-  $.post( "/profile", { city: "blahd"})
-  .done(function( data ) {
-    var $inputs = $('#editProfile :input');
-    console.log($inputs);
-
-    // not sure if you wanted this, but I thought I'd add it.
-    // get an associative array of just the values.
-    var values = {};
-    $inputs.each(function() {
-      values[this.name] = $(this).val();
-    });
-    alert( "Data Loaded: " + data );
+  var $inputs = $('#editProfile :input');
+  var values = {};
+  $inputs.each(function() {
+    values[this.name] = $(this).val();
   });
-});
+
+  $.ajax({
+    url: 'http://localhost:3000/profile',
+    type: 'POST',
+    data: JSON.stringify(values),
+    contentType: 'application/json; charset=utf-8',
+    dataType: 'json',
+    async: false,
+    success: function( data ) {
+      console.log($inputs);
+      alert( "Data Loaded: " + data );
+    }
+  });

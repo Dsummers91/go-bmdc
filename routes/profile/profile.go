@@ -20,6 +20,7 @@ type ProfileData struct {
 	User       user.UserProfile
 	Profile    interface{}
 	IsLoggedIn bool
+	IsUser     bool
 }
 
 func PostProfileHandler(w http.ResponseWriter, r *http.Request) {
@@ -31,6 +32,8 @@ func PostProfileHandler(w http.ResponseWriter, r *http.Request) {
 
 	collection, context, cancel := database.Collection("members")
 	defer cancel()
+
+	fmt.Println(user.Username)
 
 	res, _ := collection.ReplaceOne(context,
 		bson.M{"city": user.City},
@@ -54,6 +57,9 @@ func GetProfileHandler(w http.ResponseWriter, r *http.Request) {
 	collection.FindOne(context, bson.M{"city": id}).Decode(&user)
 
 	data.User = user
+	data.IsUser = true
+
+	fmt.Println(user)
 
 	w.WriteHeader(http.StatusOK)
 	w.Header().Set("Content-Type", "application/json")
@@ -100,7 +106,6 @@ func renderTemplate(w http.ResponseWriter, r *http.Request, data ProfileData) {
 		data.IsLoggedIn = true
 	}
 
-	fmt.Println(data.Profile)
 	err = t.Execute(w, data)
 
 	if err != nil {
