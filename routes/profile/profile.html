@@ -23,16 +23,6 @@
                 <br>
                 <br>
                 <br>
-                <div class="mbr-testimonial card">
-                  <div class="card-block mbr-editable-content">
-                    <p>
-                    <span style="font-style: normal;">
-                      Partner:<br>Taraji Henson</span>
-                    </p>
-                  </div>
-                  <div class="mbr-author card-footer">
-                  </div>
-                </div>          
 
               </div>
               <div class="col-xs-12 col-md-6">
@@ -41,8 +31,13 @@
                   <div class="card-block mbr-editable-content">
                     <p>
                     <span style="font-style: normal;">
-                      Name:<br>Devon Bell</span>
+                      Member: {{ .User.Name }}
+                    </span>
                     </p>
+                    <hr>
+                    {{ .User.UserSocialMedia.Facebook.Username }}
+                    {{ .User.UserSocialMedia.Twitter.Username }}
+                    {{ .User.UserSocialMedia.Snapchat.Username }}
                   </div>
                   <div class="mbr-author card-footer">
                   </div>
@@ -52,31 +47,24 @@
                   <div class="card-block mbr-editable-content">
                     <p>
                     <span style="font-style: normal;">
-                      Contact Info<br>email: devon.bell@email.co
-                    </span>
+                      Partner: {{ .User.Partner }}</span>
                     </p>
+                    <hr>
+                    {{ .User.PartnerSocialMedia.Facebook.Username }}
+                    {{ .User.PartnerSocialMedia.Twitter.Username }}
+                    {{ .User.PartnerSocialMedia.Snapchat.Username }}
                   </div>
                   <div class="mbr-author card-footer">
                   </div>
-                </div>
+                </div>          
 
                 <div class="mbr-testimonial card">
                   <div class="card-block mbr-editable-content">
                     <p>
                     <span style="font-style: normal;">
-                      Basic Info<br>Sex: Male<br>Partner: Female<br>Age: 48
-                    </span>
-                    </p>
-                  </div>
-                  <div class="mbr-author card-footer">
-                  </div>
-                </div>
-
-                <div class="mbr-testimonial card">
-                  <div class="card-block mbr-editable-content">
-                    <p>
-                    <span style="font-style: normal;">
-                      Location<br>City: Knoxville<br>State:Tennessee<br>Country:USA
+                      Location
+                      <br>
+                      {{ .User.City }}, {{ .User.State }}
                     </span>
                     </p>
                   </div>

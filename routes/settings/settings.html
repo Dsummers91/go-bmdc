@@ -29,30 +29,17 @@
               <h3>Personal info</h3>
 
               <form class="form-horizontal" id="editProfile" role="form">
+                {{$user := .User}}
+                {{range $val := .Fields }}
+                    {{ template "inputField" dict "Field" $val "User" $user}}
+                {{ end }}
                 <div class="form-group">
-                  <label class="col-lg-3 control-label">First name:</label>
+                  <label class="col-lg-3 control-label">Facebook</label>
                   <div class="col-lg-8">
-                    <input name="name" class="form-control" type="text" value="Jane">
+                    <input name="facebookUsername" class="form-control" type="text" value="{{.User.UserSocialMedia.Facebook.Username }}">
                   </div>
                 </div>
-                <div class="form-group">
-                  <label class="col-md-3 control-label">Username:</label>
-                  <div class="col-md-8">
-                    <input name="username" class="form-control" name="username" type="text" value="janeuser">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-lg-3 control-label">First name:</label>
-                  <div class="col-lg-8">
-                    <input name="city" class="form-control" type="text" value="Jane">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-lg-3 control-label">First name:</label>
-                  <div class="col-lg-8">
-                    <input name="state" class="form-control" type="text" value="Jane">
-                  </div>
-                </div>
+
                 <div class="form-group">
                   <label class="col-md-3 control-label"></label>
                   <div id="editProfileSubmit" class="col-md-8">

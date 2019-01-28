@@ -7,26 +7,25 @@ type User struct {
 }
 
 type UserProfile struct {
-	OauthID            string      `json:"-"`
+	Oauth              string      `json:"oauth" bson:"oauth"`
 	Email              string      `json:"-"`
-	Username           string      `json:"-"`
-	Name               string      `json:"name"`
-	Partner            string      `json:"partner"`
-	City               string      `json:"city"`
-	State              string      `json:"state"`
-	Private            bool        `json:"private"`
-	UserSocialMedia    SocialMedia `json:"userSocialMedia"`
-	PartnerSocialMedia SocialMedia `json:"partnerSocialMedia"`
+	Username           string      `json:"username" bson:"username"`
+	Name               string      `json:"name" bson:"name"`
+	Partner            string      `json:"partner" bson:"partner"`
+	City               string      `json:"city" bson:"city"`
+	State              string      `json:"state" bson:"state"`
+	Private            bool        `json:"private" bson:"private"`
+	UserSocialMedia    SocialMedia `json:"userSocialMedia" bson:"userSocialMedia"`
+	PartnerSocialMedia SocialMedia `json:"partnerSocialMedia" bson:"partnerSocialMedia"`
 }
 
 type SocialMedia struct {
-	Facebook SocialMediaProfile `json:"facebook"`
-	Twitter  SocialMediaProfile `json:"twitter"`
-	Snapchat SocialMediaProfile `json:"snapchat"`
+	Facebook SocialMediaProfile `json:"facebook" bson:"facebook"`
+	Twitter  SocialMediaProfile `json:"twitter" bson:"twitter"`
+	Snapchat SocialMediaProfile `json:"snapchat" bson:"snapchat"`
 }
 
 type SocialMediaProfile struct {
-	Username string `json:"username"`
-	Email    string `json:"email"`
-	Private  bool   `json:"private"`
+	Username string `json:"username" bson:"username"`
+	Private  bool   `json:"private" bson:"private"`
 }

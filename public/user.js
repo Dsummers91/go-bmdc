@@ -25,3 +25,5 @@ $("#editProfile").submit(function( event ) {
       alert( "Data Loaded: " + data );
     }
   });
+})
+

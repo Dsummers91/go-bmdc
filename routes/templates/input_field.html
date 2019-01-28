@@ -1,0 +1,8 @@
+{{define "inputField" }}
+<div class="form-group">
+  <label class="col-lg-3 control-label">{{ .Field.Title }}:</label>
+  <div class="col-lg-8">
+    <input name="{{ .Field.Name }}" class="form-control" type="text" value="{{getField .User .Field.Title }}">
+  </div>
+</div>
+{{ end }}

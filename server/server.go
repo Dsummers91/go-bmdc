@@ -35,9 +35,9 @@ func StartServer() {
 	r.HandleFunc("/profile", profile.PostProfileHandler).Methods("POST")
 	r.Handle("/profile", negroni.New(
 		negroni.HandlerFunc(middlewares.IsAuthenticated),
-		negroni.Wrap(http.HandlerFunc(profile.GetProfileHandler)),
+		negroni.Wrap(http.HandlerFunc(profile.GetUserProfileHandler)),
 	)).Methods("GET")
-	r.HandleFunc("/profile/{id}", profile.GetUserProfileHandler).Methods("GET")
+	r.HandleFunc("/profile/{id}", profile.GetProfileHandler).Methods("GET")
 	r.PathPrefix("/public/").Handler(http.StripPrefix("/public/", http.FileServer(http.Dir("public/"))))
 	http.Handle("/", r)
 

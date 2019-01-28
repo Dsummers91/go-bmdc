@@ -1,0 +1,4 @@
+#!/bin/bash
+
+sudo echo "0 * * * * root /home/deon/go-bmdc/scripts/git-update.sh" > /etc/cron.d/blackmendontcheat
+sudo service cron reload

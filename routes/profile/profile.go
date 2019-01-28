@@ -33,15 +33,24 @@ func PostProfileHandler(w http.ResponseWriter, r *http.Request) {
 	collection, context, cancel := database.Collection("members")
 	defer cancel()
 
-	fmt.Println(user.Username)
+	session, err := app.Store.Get(r, "auth-session")
+	if err != nil {
+		//SHoudl error
+	}
+	oauthProfile := session.Values["profile"]
+	oauthObject := oauthProfile.(map[string]interface{})
+	oauth := oauthObject["sub"]
 
-	res, _ := collection.ReplaceOne(context,
-		bson.M{"city": user.City},
-		bson.M{"city": user.City, "name": user.Name, "email": user.Email, "username": user.Username},
+	user.Oauth = fmt.Sprintf("%v", oauth)
+	data, _ := bson.Marshal(user)
+	_, _ = collection.ReplaceOne(context,
+		bson.M{"oauth": oauth},
+		data,
 		options.Replace().SetUpsert(true),
 	)
+	collection.FindOne(context, bson.M{"oauth": oauth}).Decode(&user)
 
-	json.NewEncoder(w).Encode(res)
+	json.NewEncoder(w).Encode(user)
 }
 
 func GetProfileHandler(w http.ResponseWriter, r *http.Request) {
@@ -54,12 +63,9 @@ func GetProfileHandler(w http.ResponseWriter, r *http.Request) {
 	collection, context, cancel := database.Collection("members")
 	defer cancel()
 
-	collection.FindOne(context, bson.M{"city": id}).Decode(&user)
+	collection.FindOne(context, bson.M{"username": id}).Decode(&user)
 
 	data.User = user
-	data.IsUser = true
-
-	fmt.Println(user)
 
 	w.WriteHeader(http.StatusOK)
 	w.Header().Set("Content-Type", "application/json")
@@ -70,15 +76,23 @@ func GetUserProfileHandler(w http.ResponseWriter, r *http.Request) {
 	var user user.UserProfile
 	var data ProfileData
 
-	vars := mux.Vars(r)
-	id := vars["id"]
-
 	collection, context, cancel := database.Collection("members")
 	defer cancel()
 
-	collection.FindOne(context, bson.M{"city": id}).Decode(&user)
+	session, err := app.Store.Get(r, "auth-session")
+	if err != nil {
+		//SHoudl error
+	}
+
+	oauthProfile := session.Values["profile"]
+	oauthObject := oauthProfile.(map[string]interface{})
+	oauth := oauthObject["sub"]
+	fmt.Println(oauth)
+
+	collection.FindOne(context, bson.M{"oauth": oauth}).Decode(&user)
 
 	data.User = user
+	data.IsUser = true
 
 	w.WriteHeader(http.StatusOK)
 	w.Header().Set("Content-Type", "application/json")
