@@ -35,9 +35,9 @@
                     </span>
                     </p>
                     <hr>
-                    {{ .User.UserSocialMedia.Facebook.Username }}
-                    {{ .User.UserSocialMedia.Twitter.Username }}
-                    {{ .User.UserSocialMedia.Snapchat.Username }}
+                    {{ .User.SocialMedia.Facebook.Username }}
+                    {{ .User.SocialMedia.Twitter.Username }}
+                    {{ .User.SocialMedia.Snapchat.Username }}
                   </div>
                   <div class="mbr-author card-footer">
                   </div>
@@ -50,9 +50,9 @@
                       Partner: {{ .User.Partner }}</span>
                     </p>
                     <hr>
-                    {{ .User.PartnerSocialMedia.Facebook.Username }}
-                    {{ .User.PartnerSocialMedia.Twitter.Username }}
-                    {{ .User.PartnerSocialMedia.Snapchat.Username }}
+                    {{ .User.PartnerFacebook }}
+                    {{ .User.PartnerTwitter }}
+                    {{ .User.PartnerSnapchat }}
                   </div>
                   <div class="mbr-author card-footer">
                   </div>
@@ -64,7 +64,7 @@
                     <span style="font-style: normal;">
                       Location
                       <br>
-                      {{ .User.City }}, {{ .User.State }}
+                      {{ .User.Location }}
                     </span>
                     </p>
                   </div>

@@ -43,11 +43,17 @@ func PostProfileHandler(w http.ResponseWriter, r *http.Request) {
 
 	user.Oauth = fmt.Sprintf("%v", oauth)
 	data, _ := bson.Marshal(user)
-	_, _ = collection.ReplaceOne(context,
+
+	_, err = collection.ReplaceOne(context,
 		bson.M{"oauth": oauth},
 		data,
 		options.Replace().SetUpsert(true),
 	)
+
+	if err != nil {
+		// error
+	}
+
 	collection.FindOne(context, bson.M{"oauth": oauth}).Decode(&user)
 
 	json.NewEncoder(w).Encode(user)
@@ -87,7 +93,6 @@ func GetUserProfileHandler(w http.ResponseWriter, r *http.Request) {
 	oauthProfile := session.Values["profile"]
 	oauthObject := oauthProfile.(map[string]interface{})
 	oauth := oauthObject["sub"]
-	fmt.Println(oauth)
 
 	collection.FindOne(context, bson.M{"oauth": oauth}).Decode(&user)
 

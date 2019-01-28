@@ -31,8 +31,10 @@ func SettingsHandler(w http.ResponseWriter, r *http.Request) {
 		Field{Title: "Username", Name: "username"},
 		Field{Title: "Name", Name: "name"},
 		Field{Title: "Partner", Name: "partner"},
-		Field{Title: "City", Name: "city"},
-		Field{Title: "State", Name: "state"},
+		Field{Title: "Partner Facebook", Name: "partnerFacebook"},
+		Field{Title: "Partner Twitter", Name: "partnerTwitter"},
+		Field{Title: "Partner Instagram", Name: "partnerInstagram"},
+		Field{Title: "Location", Name: "location"},
 		Field{Title: "Private", Name: "private"},
 	}
 

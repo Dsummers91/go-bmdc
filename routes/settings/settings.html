@@ -34,9 +34,9 @@
                     {{ template "inputField" dict "Field" $val "User" $user}}
                 {{ end }}
                 <div class="form-group">
-                  <label class="col-lg-3 control-label">Facebook</label>
+                  <label class="col-lg-3 control-label">Member</label>
                   <div class="col-lg-8">
-                    <input name="facebookUsername" class="form-control" type="text" value="{{.User.UserSocialMedia.Facebook.Username }}">
+                    <input name="isMember" class="form-control" type="string" value="{{.User.IsMember }}">
                   </div>
                 </div>
 
@@ -48,7 +48,7 @@
                 </div>
               </form>
             </div>
-  </div>
+          </div>
         </div>
         <hr>
         {{ template "footer" }}
