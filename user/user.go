@@ -31,9 +31,9 @@ type Membership struct {
 }
 
 type SocialMedia struct {
-	Facebook SocialMediaProfile `json:"facebook" bson:"facebook"`
-	Twitter  SocialMediaProfile `json:"twitter" bson:"twitter"`
-	Snapchat SocialMediaProfile `json:"snapchat" bson:"snapchat"`
+	Facebook  SocialMediaProfile `json:"facebook" bson:"facebook"`
+	Twitter   SocialMediaProfile `json:"twitter" bson:"twitter"`
+	Instagram SocialMediaProfile `json:"snapchat" bson:"instagram"`
 }
 
 type SocialMediaProfile struct {

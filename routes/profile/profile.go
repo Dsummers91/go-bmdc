@@ -37,6 +37,7 @@ func PostProfileHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		//SHoudl error
 	}
+
 	oauthProfile := session.Values["profile"]
 	oauthObject := oauthProfile.(map[string]interface{})
 	oauth := oauthObject["sub"]

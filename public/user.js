@@ -4,13 +4,17 @@ $(document).ready(function() {
     });
 });
 
-
 $("#editProfile").submit(function( event ) {
   event.preventDefault();
   var $inputs = $('#editProfile :input');
   var values = {};
   $inputs.each(function() {
     values[this.name] = $(this).val();
+    if (values[this.name] == "true") {
+      values[this.name] = true;
+    }  else if (values[this.name] == "false") {
+      values[this.name] = false
+    }
   });
 
   $.ajax({
