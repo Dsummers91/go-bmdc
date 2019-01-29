@@ -1,3 +1,4 @@
 - [ ] Webhook to activate cards
 - [ ] Connect Facebook/Instagram/Twitter
 - [ ] AWS Picture Uploads
+- [ ] Daily Cron
