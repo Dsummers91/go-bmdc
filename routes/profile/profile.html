@@ -35,9 +35,9 @@
                     </span>
                     </p>
                     <hr>
-                    {{ .User.SocialMedia.Facebook.Username }}
-                    {{ .User.SocialMedia.Twitter.Username }}
-                    {{ .User.SocialMedia.Instagram.Username }}
+                    {{ .User.MemberFacebook }}
+                    {{ .User.MemberTwitter }}
+                    {{ .User.MemberInstagram }}
                   </div>
                   <div class="mbr-author card-footer">
                   </div>
@@ -63,7 +63,7 @@
                     <p>
                     <span style="font-style: normal;">
                       Location
-                      <br>
+                      <hr>
                       {{ .User.Location }}
                     </span>
                     </p>

@@ -10,7 +10,6 @@ type User struct {
 
 type UserProfile struct {
 	Oauth            string      `json:"oauth" bson:"oauth"`
-	Membership       Membership  `json:"membership" bson:"membership, inline"`
 	Email            string      `json:"email" bson:"email"`
 	Username         string      `json:"username" bson:"username"`
 	Name             string      `json:"name" bson:"name"`
@@ -21,6 +20,9 @@ type UserProfile struct {
 	PartnerFacebook  string      `json:"partnerFacebook" bson:"partnerFacebook"`
 	PartnerTwitter   string      `json:"partnerTwitter" bson:"partnerTwitter"`
 	PartnerInstagram string      `json:"partnerInstagram" bson:"partnerInstagram"`
+	MemberFacebook   string      `json:"memberFacebook" bson:"memberFacebook"`
+	MemberTwitter    string      `json:"memberTwitter" bson:"memberTwitter"`
+	MemberInstagram  string      `json:"memberInstagram" bson:"memberInstagram"`
 	SocialMedia      SocialMedia `json:"socialMedia" bson:"socialMedia"`
 }
 
