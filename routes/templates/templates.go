@@ -32,6 +32,7 @@ func RenderTemplate(w http.ResponseWriter, r *http.Request, tmpl string, data in
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
+
 	session, err := app.Store.Get(r, "auth-session")
 	if err == nil {
 		if profile, ok := session.Values["profile"]; ok {

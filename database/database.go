@@ -7,12 +7,26 @@ import (
 
 	"github.com/mongodb/mongo-go-driver/bson"
 	"github.com/mongodb/mongo-go-driver/mongo"
+	"github.com/mongodb/mongo-go-driver/mongo/options"
+	"github.com/mongodb/mongo-go-driver/x/bsonx"
 )
 
 var Client *mongo.Client
 
 func Establish_connection() {
 	Client, _ = mongo.NewClient("mongodb://localhost:27017")
+	collection := Client.Database("blackmendontcheat").Collection("members")
+	ctx, cancel := newContext()
+	Client.Connect(ctx)
+	defer cancel()
+
+	index := mongo.IndexModel{
+		Keys:    bsonx.Doc{{Key: "username", Value: bsonx.Int32(1)}},
+		Options: options.Index().SetUnique(true),
+	}
+
+	opts := options.CreateIndexes().SetMaxTime(10 * time.Second)
+	collection.Indexes().CreateOne(ctx, index, opts)
 }
 
 func Collection(table string) (*mongo.Collection, context.Context, context.CancelFunc) {
