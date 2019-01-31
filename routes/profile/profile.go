@@ -27,7 +27,6 @@ func PostProfileHandler(w http.ResponseWriter, r *http.Request) {
 	var user user.UserProfile
 	json.NewDecoder(r.Body).Decode(&user)
 
-	w.WriteHeader(http.StatusOK)
 	w.Header().Set("Content-Type", "application/json")
 
 	collection, context, cancel := database.Collection("members")
@@ -52,11 +51,14 @@ func PostProfileHandler(w http.ResponseWriter, r *http.Request) {
 	)
 
 	if err != nil {
-		// error
+		w.WriteHeader(http.StatusBadRequest)
+		w.Write([]byte(`{"message": "Problem Updating User"}`))
+		return
 	}
 
 	collection.FindOne(context, bson.M{"oauth": oauth}).Decode(&user)
 
+	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(user)
 }
 
