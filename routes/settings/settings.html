@@ -5,6 +5,12 @@
   </head>
   <body>
     {{ template "navbar" . }}
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
         <div class="container">
           <h1>Edit Profile</h1>
           <hr>
@@ -18,14 +24,14 @@
                 <input type="file" class="form-control">
               </div>
             </div>
-
             <!-- edit form column -->
             <div class="col-md-9 personal-info">
+              {{ if eq .User.IsMember false }}
               <div class="alert alert-info alert-dismissable">
                 <a class="panel-close close" data-dismiss="alert">×</a>
-                <i class="fa fa-coffee"></i>``
-                This is an <strong>.alert</str`ong>. Use this to show important messages to the user.
+                This User is not a member
               </div>
+              {{ end }}
               <h3>Personal info</h3>
 
               <form class="form-horizontal" id="editProfile" role="form">

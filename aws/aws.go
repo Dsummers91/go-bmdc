@@ -1,4 +1,4 @@
-package main
+package aws
 
 import (
 	"fmt"
@@ -9,10 +9,6 @@ import (
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/s3/s3manager"
 )
-
-func main() {
-	fmt.Println("vim-go")
-}
 
 func imageUpload() {
 	if len(os.Args) != 3 {
@@ -36,7 +32,7 @@ func imageUpload() {
 	svc := s3manager.NewUploader(sess)
 
 	fmt.Println("Uploading file to S3...")
-	result, err := svc.Upload(&s3manager.UploadInput{
+	_, err = svc.Upload(&s3manager.UploadInput{
 		Bucket: aws.String(bucket),
 		Key:    aws.String(filepath.Base(filename)),
 		Body:   file,

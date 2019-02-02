@@ -24,17 +24,19 @@
                       <li class="nav-item"><a class="nav-link link" href="/#header3-8">ABOUT BMDC</a></li>
                       <li class="nav-item"><a class="nav-link link" href="/#msg-box2-f">SHOP</a></li>
                       {{if .IsLoggedIn }}
-                      <li class="nav-item nav-btn"><a class="nav-link btn btn-main btn-main-outline" href="/profile">PROFILE</a></li>
-                      <li class="nav-item nav-btn"><a class="nav-link btn-logout btn btn-white btn-white-outline" href="/logout">LOGOUT</a></li>
-                      {{ else }}
-                      <li class="nav-item nav-btn"><a class="nav-link btn btn-main btn-main-outline" href="/login">LOG IN</a></li>
-                      <li class="nav-item nav-btn"><a class="nav-link btn btn-white btn-white-outline" href="/join">JOIN</a></li>
-                      {{ end }}
-                      <li class="nav-item nav-btn">
-                        <form action="https://thisismotivation.foxycart.com/cart?cart=view" method="post" accept-charset="utf-8">
-                          <input type="submit" value="CART">
-                        </form>
+                      <li class="nav-item nav-btn dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <img style="border-radius: 15px" src="https://via.placeholder.com/30">
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <a class="dropdown-item" href="/profile">Profile</a>
+                          <a class="dropdown-item" href="/settings">Settings</a>
+                          <a class="dropdown-item btn-logout" href="/logout">Logout</a>
+                        </div>
                       </li>
+                      {{ else }}
+                      <li class="nav-item nav-btn"><a class="nav-link btn btn-main btn-main-outline" href="/login">LOG IN / SIGN UP</a></li>
+                      {{ end }}
                     </ul>
 
                     <button hidden="" class="navbar-toggler navbar-close" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">

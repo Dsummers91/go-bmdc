@@ -46,6 +46,7 @@ func GetCollection(collection *mongo.Collection, ctx context.Context) []interfac
 	if err != nil {
 		log.Fatal(err)
 	}
+
 	defer cur.Close(ctx)
 	var results []interface{}
 	for cur.Next(ctx) {
