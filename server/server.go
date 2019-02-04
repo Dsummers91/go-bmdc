@@ -9,6 +9,7 @@ import (
 	"github.com/dsummers91/go-bmdc/database"
 	"github.com/dsummers91/go-bmdc/routes/callback"
 	"github.com/dsummers91/go-bmdc/routes/home"
+	"github.com/dsummers91/go-bmdc/routes/image"
 	"github.com/dsummers91/go-bmdc/routes/join"
 	"github.com/dsummers91/go-bmdc/routes/login"
 	"github.com/dsummers91/go-bmdc/routes/logout"
@@ -28,11 +29,12 @@ func StartServer() {
 	r.HandleFunc("/login", login.LoginHandler)
 	r.HandleFunc("/logout", logout.LogoutHandler)
 	r.HandleFunc("/callback", callback.CallbackHandler)
-	r.Handle("/settings", negroni.New(
+	r.Handle("/profile/settings", negroni.New(
 		negroni.HandlerFunc(middlewares.IsAuthenticated),
 		negroni.Wrap(http.HandlerFunc(settings.SettingsHandler)),
 	))
 	r.HandleFunc("/profile", profile.PostProfileHandler).Methods("POST")
+	r.HandleFunc("/profile/image", image.PostImageHandler).Methods("POST")
 	r.Handle("/profile", negroni.New(
 		negroni.HandlerFunc(middlewares.IsAuthenticated),
 		negroni.Wrap(http.HandlerFunc(profile.GetUserProfileHandler)),
