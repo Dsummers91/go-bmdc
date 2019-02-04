@@ -31,3 +31,11 @@ $("#editProfile").submit(function( event ) {
   });
 })
 
+
+$("#imageUpload").change(function(e){
+  console.log(e);
+});
+
+$('#imageUpload').on('click touchstart' , function(){
+  $(this).val('');
+});
