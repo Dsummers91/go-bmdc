@@ -4,7 +4,7 @@ src/
 bmdc-server
 pkg/
 vendor/
-
+tmp/
 *.swp
 *.swo
 

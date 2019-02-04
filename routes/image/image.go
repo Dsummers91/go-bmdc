@@ -1,6 +1,7 @@
 package image
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"net/http"
@@ -10,6 +11,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/s3/s3manager"
+	"github.com/mongodb/mongo-go-driver/bson"
 )
 
 func uploadToS3() {
@@ -62,7 +64,7 @@ func FileUpload(r *http.Request) (string, error) {
 
 	}
 	//this is path which  we want to store the file
-	f, err := os.OpenFile("./images/"+handler.Filename, os.O_WRONLY|os.O_CREATE, 0666)
+	f, err := os.OpenFile("./public/assets/tmp/"+handler.Filename, os.O_WRONLY|os.O_CREATE, 0666)
 	if err != nil {
 
 		errors = err
@@ -83,5 +85,6 @@ func PostImageHandler(w http.ResponseWriter, r *http.Request) {
 		panic("no image found")
 		//checking whether any error occurred retrieving image
 	}
-	fmt.Println(imageName)
+	json.NewEncoder(w).Encode(bson.M{"status": 1, "name": imageName})
+
 }

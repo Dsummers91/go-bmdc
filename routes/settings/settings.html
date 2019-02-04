@@ -21,7 +21,10 @@
                 <img src="{{ .Profile.picture }}" class="avatar img-circle" alt="avatar">
                 <h6>Upload a different photo...</h6>
 
-                <input id="imageUpload" type="file" class="form-control">
+                <form id="imageForm">
+                <input name="file" id="imageUpload" type="file" class="form-control">
+                <button type="submit" />
+                </form>
               </div>
             </div>
             <!-- edit form column -->

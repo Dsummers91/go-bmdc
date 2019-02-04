@@ -1,0 +1,27 @@
+{
+  "name": "@hashed_health/psclient",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dsummers91/poker-showdown-landing-page.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dsummers91/poker-showdown-landing-page/issues"
+  },
+  "homepage": "https://github.com/Dsummers91/poker-showdown-landing-page#readme",
+  "dependencies": {
+    "aws-sdk": "^2.370.0",
+    "body-parser": "^1.18.3",
+    "dotenv": "^6.1.0",
+    "express": "^4.16.4"
+  }
+}
