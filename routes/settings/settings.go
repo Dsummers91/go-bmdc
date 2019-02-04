@@ -53,14 +53,16 @@ func renderTemplate(w http.ResponseWriter, r *http.Request, data SettingsData) {
 	if err != nil {
 		//SHoudl error
 	}
+	data.IsLoggedIn = true
 
 	oauthProfile := session.Values["profile"]
-	oauthObject := oauthProfile.(map[string]interface{})
-	oauth := oauthObject["sub"]
+	profile := oauthProfile.(map[string]interface{})
+	oauth := profile["sub"]
 
 	collection.FindOne(context, bson.M{"oauth": oauth}).Decode(&user)
 
 	data.User = user
+	data.Profile = profile
 
 	cwd, _ := os.Getwd()
 	t, err := template.New("settings.html").Funcs(template.FuncMap{
@@ -78,12 +80,6 @@ func renderTemplate(w http.ResponseWriter, r *http.Request, data SettingsData) {
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
-	}
-
-	session, err = app.Store.Get(r, "auth-session")
-	if err == nil {
-		data.Profile = session.Values["profile"]
-		data.IsLoggedIn = true
 	}
 
 	err = t.Execute(w, data)
