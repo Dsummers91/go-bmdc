@@ -16,6 +16,7 @@ import (
 	"github.com/dsummers91/go-bmdc/routes/middlewares"
 	"github.com/dsummers91/go-bmdc/routes/profile"
 	"github.com/dsummers91/go-bmdc/routes/settings"
+	"github.com/dsummers91/go-bmdc/routes/terms"
 	"github.com/gorilla/mux"
 )
 
@@ -28,6 +29,7 @@ func StartServer() {
 	r.HandleFunc("/join", join.PostJoinHandler).Methods("POST")
 	r.HandleFunc("/login", login.LoginHandler)
 	r.HandleFunc("/logout", logout.LogoutHandler)
+	r.HandleFunc("/terms", terms.GetTermsHandler).Methods("GET")
 	r.HandleFunc("/callback", callback.CallbackHandler)
 	r.Handle("/profile/settings", negroni.New(
 		negroni.HandlerFunc(middlewares.IsAuthenticated),
