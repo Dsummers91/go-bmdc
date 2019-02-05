@@ -93,3 +93,23 @@ label {
 .login-page .login-box {
   padding: 100px 0;
 }
+
+
+.profile-image {
+  max-width: 150px;
+  max-height: 150px;
+
+}
+
+.profile-image > img {
+  max-width: 90%;
+  height: auto;
+}
+
+.navbar-caption {
+  max-width: 60px;
+}
+.navbar-caption> img {
+  max-width: 90%;
+  height: auto;
+}

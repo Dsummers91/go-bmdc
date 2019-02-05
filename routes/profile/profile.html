@@ -16,7 +16,11 @@
                   {{ if .IsUser }} <a href="/profile/settings"><button>Edit Profile</button></a>{{ end }}
                 <div class="card cart-block">
                   <div class="feature-img">
+                    {{ if eq .User.Image ""}}
                     <img src="/public/assets/images/action-adult-carry-1378866-600x400.jpg" class="card-img-top">
+                    {{ else }}
+                    <img src="{{ .User.Image }}" class="card-img-top">
+                    {{ end }}
                   </div>
                 </div>
 

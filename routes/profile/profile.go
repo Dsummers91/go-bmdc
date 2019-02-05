@@ -96,7 +96,6 @@ func GetUserProfileHandler(w http.ResponseWriter, r *http.Request) {
 	oauthProfile := session.Values["profile"]
 	oauthObject := oauthProfile.(map[string]interface{})
 	oauth := oauthObject["sub"]
-	fmt.Println(oauthObject)
 
 	collection.FindOne(context, bson.M{"oauth": oauth}).Decode(&user)
 

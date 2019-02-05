@@ -11,6 +11,7 @@ type User struct {
 type UserProfile struct {
 	Oauth            string      `json:"oauth" bson:"oauth"`
 	Email            string      `json:"email" bson:"email"`
+	Image            string      `json:"image" bson:"image"`
 	Username         string      `json:"username" bson:"username"`
 	Name             string      `json:"name" bson:"name"`
 	Partner          string      `json:"partner" bson:"partner"`

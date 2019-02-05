@@ -18,12 +18,17 @@
             <!-- left column -->
             <div class="col-md-3">
               <div class="text-center">
-                <img src="{{ .Profile.picture }}" class="avatar img-circle" alt="avatar">
-                <h6>Upload a different photo...</h6>
-
+                <div class="profile-image">
+                  {{ if eq .User.Image ""}}
+                  <img src="{{ .Profile.picture }}" class="avatar img-circle" alt="avatar">
+                  {{ else }}
+                  <img src="{{ .User.Image }}" class="avatar img-circle" alt="avatar">
+                  {{ end }}
+                </div>
+                <div class="clearfix"></div>>
                 <form id="imageForm">
                 <input name="file" id="imageUpload" type="file" class="form-control">
-                <button type="submit" />
+                <button type="submit" >Submit</button>
                 </form>
               </div>
             </div>
