@@ -111,5 +111,15 @@ label {
 }
 .navbar-caption> img {
   max-width: 90%;
+  max-height: 56px;
   height: auto;
+}
+
+.avatar {
+  max-width: 36px;
+}
+
+.profile-img img {
+  max-height: 520px;
+  max-width: 260px;
 }

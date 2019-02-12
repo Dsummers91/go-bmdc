@@ -28,11 +28,15 @@
                       {{if .IsLoggedIn }}
                       <li class="nav-item nav-btn dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <img style="border-radius: 15px" src="https://via.placeholder.com/30">
+                          {{ if eq .User.Image ""}}
+                          <img src="{{ .Profile.picture }}" class="avatar" alt="avatar">
+                          {{ else }}
+                          <img src="{{ .User.Image }}" class="avatar" alt="avatar">
+                          {{ end }}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                           <a class="dropdown-item" href="/profile">Profile</a>
-                          <a class="dropdown-item" href="/profile/settings">Settings</a>
+                          <a class="dropdown-item" href="/profile/settings">Edit Profile</a>
                           <a class="dropdown-item btn-logout" href="/logout">Logout</a>
                         </div>
                       </li>

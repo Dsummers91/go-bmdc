@@ -14,6 +14,7 @@ import (
 	"github.com/dsummers91/go-bmdc/routes/login"
 	"github.com/dsummers91/go-bmdc/routes/logout"
 	"github.com/dsummers91/go-bmdc/routes/middlewares"
+	"github.com/dsummers91/go-bmdc/routes/privacy"
 	"github.com/dsummers91/go-bmdc/routes/profile"
 	"github.com/dsummers91/go-bmdc/routes/settings"
 	"github.com/dsummers91/go-bmdc/routes/terms"
@@ -30,6 +31,7 @@ func StartServer() {
 	r.HandleFunc("/login", login.LoginHandler)
 	r.HandleFunc("/logout", logout.LogoutHandler)
 	r.HandleFunc("/terms", terms.GetTermsHandler).Methods("GET")
+	r.HandleFunc("/privacy", privacy.GetPrivacyHandler).Methods("GET")
 	r.HandleFunc("/callback", callback.CallbackHandler)
 	r.Handle("/profile/settings", negroni.New(
 		negroni.HandlerFunc(middlewares.IsAuthenticated),

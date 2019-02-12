@@ -13,8 +13,7 @@
               <div class="col-xs-12 col-md-6 text-xs-center title-wrap">
 
                   <h3 class="mbr-section-title display-2 mbr-editable-content">{{.User.Username}}</h3> 
-                  {{ if .IsUser }} <a href="/profile/settings"><button>Edit Profile</button></a>{{ end }}
-                <div class="card cart-block">
+                <div class="profile-img card cart-block">
                   <div class="feature-img">
                     {{ if eq .User.Image ""}}
                     <img src="/public/assets/images/action-adult-carry-1378866-600x400.jpg" class="card-img-top">

@@ -1,4 +1,4 @@
-package terms
+package privacy
 
 import (
 	"html/template"
@@ -9,7 +9,7 @@ import (
 	"github.com/dsummers91/go-bmdc/user"
 )
 
-func GetTermsHandler(w http.ResponseWriter, r *http.Request) {
+func GetPrivacyHandler(w http.ResponseWriter, r *http.Request) {
 	renderTemplate(w, r)
 }
 
@@ -17,7 +17,7 @@ func renderTemplate(w http.ResponseWriter, r *http.Request) {
 	var data user.UserProfile
 	cwd, _ := os.Getwd()
 	t, err := template.ParseFiles(
-		filepath.Join(cwd, "./routes/terms/terms.html"),
+		filepath.Join(cwd, "./routes/privacy/privacy.html"),
 		filepath.Join(cwd, "./routes/templates/header.html"),
 		filepath.Join(cwd, "./routes/templates/navbar.html"),
 		filepath.Join(cwd, "./routes/templates/footer.html"),

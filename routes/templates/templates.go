@@ -7,6 +7,9 @@ import (
 	"path/filepath"
 
 	"github.com/dsummers91/go-bmdc/app"
+	"github.com/dsummers91/go-bmdc/database"
+	"github.com/dsummers91/go-bmdc/user"
+	"github.com/mongodb/mongo-go-driver/bson"
 )
 
 type TemplateData struct {
@@ -16,9 +19,12 @@ type TemplateData struct {
 	Auth0CallbackURL  template.URL
 	Profile           interface{}
 	IsLoggedIn        bool
+	User              user.UserProfile
 }
 
 func RenderTemplate(w http.ResponseWriter, r *http.Request, tmpl string, data interface{}) {
+	var user user.UserProfile
+
 	cwd, _ := os.Getwd()
 	t, err := template.ParseFiles(
 		filepath.Join(cwd, "./routes/"+tmpl+"/"+tmpl+".html"),
@@ -36,6 +42,14 @@ func RenderTemplate(w http.ResponseWriter, r *http.Request, tmpl string, data in
 	session, err := app.Store.Get(r, "auth-session")
 	if err == nil {
 		if profile, ok := session.Values["profile"]; ok {
+			collection, context, cancel := database.Collection("members")
+			defer cancel()
+
+			userProfile := profile.(map[string]interface{})
+			oauth := userProfile["sub"]
+
+			collection.FindOne(context, bson.M{"oauth": oauth}).Decode(&user)
+
 			data = TemplateData{
 				Profile:           profile,
 				IsLoggedIn:        true,
@@ -43,6 +57,7 @@ func RenderTemplate(w http.ResponseWriter, r *http.Request, tmpl string, data in
 				Auth0CallbackURL:  template.URL(os.Getenv("AUTH0_CALLBACK_URL")),
 				Auth0ClientId:     os.Getenv("AUTH0_CLIENT_ID"),
 				Auth0ClientSecret: os.Getenv("AUTH0_CLIENT_SECRET"),
+				User:              user,
 			}
 		}
 	}
