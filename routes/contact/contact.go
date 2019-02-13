@@ -6,11 +6,12 @@ import (
 	"os"
 	"path/filepath"
 
+	"github.com/dsummers91/go-bmdc/routes/templates"
 	"github.com/dsummers91/go-bmdc/user"
 )
 
 func GetContactHandler(w http.ResponseWriter, r *http.Request) {
-	renderTemplate(w, r)
+	templates.RenderTemplate(w, r, "contact", struct{}{})
 }
 
 func renderTemplate(w http.ResponseWriter, r *http.Request) {

@@ -4,7 +4,7 @@
   {{ template "header" }}
 </head>
 <body>
-  {{ template "navbar" }}
+  {{ template "navbar" . }}
 
 <section class="engine"></section><section class="mbr-section form1 mbr-after-navbar" id="form1-l" data-rv-view="31" style="background-color: rgb(31, 42, 47); padding-top: 120px; padding-bottom: 120px;">
     
@@ -18,71 +18,9 @@
             </div>
         </div>
     </div>
-    <div class="mbr-section mbr-section-nopadding">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-lg-10 col-lg-offset-1" data-form-type="formoid">
-
-
-                    <div data-form-alert="true">
-                        <div hidden="" data-form-alert-success="true" class="alert alert-form alert-success text-xs-center">Thanks for signing up! We will get back to you soon.</div>
-                    </div>
-
-
-                    <form action="/join" method="post" data-form-title="Join Us">
-
-                        <input type="hidden" value="UMp6jUMfxScpP26J7ob70gzJ8ZcNxvAkYX57HHVp/2UlkwVzDbsXWEXRgf74OBjbp0IzJle+Wc+ZDYkOXuRCN+k7gXa94VWnaPVEXmiHM90mTZo7zZXreeFysqgs6grQ" data-form-email="true">
-
-                        <div class="row row-sm-offset">
-
-                            <div class="col-xs-12 col-md-4">
-                                <div class="form-group">
-                                    <label class="form-control-label" for="form1-l-name">Name<span class="form-asterisk">*</span></label>
-                                    <input type="text" class="form-control" name="name" required="" data-form-field="Name" id="form1-l-name">
-                                </div>
-                            </div>
-
-                            <div class="col-xs-12 col-md-4">
-                                <div class="form-group">
-                                    <label class="form-control-label" for="form1-l-email">Email<span class="form-asterisk">*</span></label>
-                                    <input type="email" class="form-control" name="email" required="" data-form-field="Email" id="form1-l-email">
-                                </div>
-                            </div>
-
-                            <div class="col-xs-12 col-md-4">
-                                <div class="form-group">
-                                    <label class="form-control-label" for="form1-l-phone">Phone</label>
-                                    <input type="tel" class="form-control" name="phone" data-form-field="Phone" id="form1-l-phone">
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-control-label" for="form1-l-message">Message</label>
-                            <textarea class="form-control" name="message" rows="7" data-form-field="Message" id="form1-l-message"></textarea>
-                        </div>
-
-                        <div><button type="submit" class="btn btn-warning col-xs-12">SIGN UP</button></div>
-
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
 </section>
 
-
-  <script src="/public/assets/web//public/assets/jquery/jquery.min.js"></script>
-  <script src="/public/assets/tether/tether.min.js"></script>
-  <script src="/public/assets/bootstrap/js/bootstrap.min.js"></script>
-  <script src="/public/assets/smooth-scroll/smooth-scroll.js"></script>
-  <script src="/public/assets/dropdown/js/script.min.js"></script>
-  <script src="/public/assets/touch-swipe/jquery.touch-swipe.min.js"></script>
-  <script src="/public/assets/viewport-checker/jquery.viewportchecker.js"></script>
-  <script src="/public/assets/theme/js/script.js"></script>
-  
-  
-  <input name="animation" type="hidden">
+  {{ if .IsLoggedIn }} {{.IsLoggedIn}} {{ end }}
+  {{ template "footer" }}
   </body>
 </html>

@@ -61,7 +61,6 @@ func RenderTemplate(w http.ResponseWriter, r *http.Request, tmpl string, data in
 			}
 		}
 	}
-
 	err = t.Execute(w, data)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
