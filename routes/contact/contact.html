@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html >
+<head>
+  {{ template "header" }}
+</head>
+<body>
+  {{ template "navbar" }}
+
+<section class="engine"></section><section class="mbr-section form1 mbr-after-navbar" id="form1-l" data-rv-view="31" style="background-color: rgb(31, 42, 47); padding-top: 120px; padding-bottom: 120px;">
+    
+    <div class="mbr-section mbr-section__container mbr-section__container--middle">
+      <div class="container text-white">
+        <div class="row">
+          <div class="container">
+            <div class="header-1 contact_form_wrapper">
+              <h2 class="text-center">We're here for you!</h2>
+              <div class="header-bottom-line"></div>
+              <form class="te-ajax-form" id="contact_form" action="contact_us/send" novalidate="true">
+                <div class="form-group col-md-6">
+                  <input class="form-control required" name="name" placeholder="What's your mom call you?">
+                </div>
+                <div class="form-group col-md-6">
+                  <input class="form-control validate-email" name="email" placeholder="Where can we email you back?">
+                </div>
+                <div class="col-md-12">
+                  <textarea class="form-control required" name="message" placeholder="What's on your mind?"></textarea>
+                </div>
+                <div class="circle_btn_wrapper">
+                  <button class="circle_btn">SEND IT</button>
+                </div>
+                <input type="hidden" name="sendEmail" value="hi@shipyourenemiesglitter.com ">
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+</section>
+  {{ template "footer" }}
+  </body>
+</html>
+
