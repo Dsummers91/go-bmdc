@@ -1,6 +1,7 @@
 package templates
 
 import (
+	"fmt"
 	"html/template"
 	"net/http"
 	"os"
@@ -60,6 +61,18 @@ func RenderTemplate(w http.ResponseWriter, r *http.Request, tmpl string, data in
 				User:              user,
 			}
 		}
+	} else {
+		c := http.Cookie{
+			Name:   "auth-session",
+			MaxAge: -1,
+		}
+		http.SetCookie(w, &c)
+		c = http.Cookie{
+			Name:   "state",
+			MaxAge: -1,
+		}
+		http.SetCookie(w, &c)
+		fmt.Println("ERROR")
 	}
 	err = t.Execute(w, data)
 	if err != nil {

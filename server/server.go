@@ -18,6 +18,7 @@ import (
 	"github.com/dsummers91/go-bmdc/routes/privacy"
 	"github.com/dsummers91/go-bmdc/routes/profile"
 	"github.com/dsummers91/go-bmdc/routes/settings"
+	"github.com/dsummers91/go-bmdc/routes/store"
 	"github.com/dsummers91/go-bmdc/routes/terms"
 	"github.com/gorilla/mux"
 )
@@ -34,6 +35,7 @@ func StartServer() {
 	r.HandleFunc("/terms", terms.GetTermsHandler).Methods("GET")
 	r.HandleFunc("/contact", contact.GetContactHandler).Methods("GET")
 	r.HandleFunc("/privacy", privacy.GetPrivacyHandler).Methods("GET")
+	r.HandleFunc("/shop", store.GetStoreHandler).Methods("GET")
 	r.HandleFunc("/callback", callback.CallbackHandler)
 	r.Handle("/profile/settings", negroni.New(
 		negroni.HandlerFunc(middlewares.IsAuthenticated),

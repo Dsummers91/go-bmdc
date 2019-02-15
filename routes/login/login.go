@@ -38,8 +38,11 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 
 	session, err := app.Store.Get(r, "state")
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
+		c := http.Cookie{
+			Name:   "state",
+			MaxAge: -1,
+		}
+		http.SetCookie(w, &c)
 	}
 	session.Values["state"] = state
 	session.Options = &sessions.Options{
