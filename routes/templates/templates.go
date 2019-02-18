@@ -1,7 +1,6 @@
 package templates
 
 import (
-	"fmt"
 	"html/template"
 	"net/http"
 	"os"
@@ -25,6 +24,7 @@ type TemplateData struct {
 
 func RenderTemplate(w http.ResponseWriter, r *http.Request, tmpl string, data interface{}) {
 	var user user.UserProfile
+	var profile interface{}
 
 	cwd, _ := os.Getwd()
 	t, err := template.ParseFiles(
@@ -72,7 +72,15 @@ func RenderTemplate(w http.ResponseWriter, r *http.Request, tmpl string, data in
 			MaxAge: -1,
 		}
 		http.SetCookie(w, &c)
-		fmt.Println("ERROR")
+		data = TemplateData{
+			Profile:           profile,
+			IsLoggedIn:        false,
+			Auth0Domain:       os.Getenv("AUTH0_DOMAIN"),
+			Auth0CallbackURL:  template.URL(os.Getenv("AUTH0_CALLBACK_URL")),
+			Auth0ClientId:     os.Getenv("AUTH0_CLIENT_ID"),
+			Auth0ClientSecret: os.Getenv("AUTH0_CLIENT_SECRET"),
+			User:              user,
+		}
 	}
 	err = t.Execute(w, data)
 	if err != nil {

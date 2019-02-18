@@ -11,7 +11,8 @@ import (
 )
 
 func GetContactHandler(w http.ResponseWriter, r *http.Request) {
-	templates.RenderTemplate(w, r, "contact", struct{}{})
+	var data templates.TemplateData
+	templates.RenderTemplate(w, r, "contact", data)
 }
 
 func renderTemplate(w http.ResponseWriter, r *http.Request) {

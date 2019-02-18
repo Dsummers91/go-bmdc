@@ -7,5 +7,6 @@ import (
 )
 
 func GetPrivacyHandler(w http.ResponseWriter, r *http.Request) {
-	templates.RenderTemplate(w, r, "privacy", struct{}{})
+	var data templates.TemplateData
+	templates.RenderTemplate(w, r, "privacy", data)
 }

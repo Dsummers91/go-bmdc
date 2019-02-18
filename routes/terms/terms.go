@@ -7,5 +7,6 @@ import (
 )
 
 func GetTermsHandler(w http.ResponseWriter, r *http.Request) {
-	templates.RenderTemplate(w, r, "terms", struct{}{})
+	var data templates.TemplateData
+	templates.RenderTemplate(w, r, "terms", data)
 }

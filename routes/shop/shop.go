@@ -1,4 +1,4 @@
-package store
+package shop
 
 import (
 	"net/http"
@@ -7,5 +7,6 @@ import (
 )
 
 func GetStoreHandler(w http.ResponseWriter, r *http.Request) {
-	templates.RenderTemplate(w, r, "store", struct{}{})
+	var data templates.TemplateData
+	templates.RenderTemplate(w, r, "shop", data)
 }
