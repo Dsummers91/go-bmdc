@@ -3,10 +3,16 @@ stages:
   - test
 
 before_script:
-  - curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
-  - dep ensure -vendor-only
+    - cd $GOPATH/src
+    - mkdir -p github.com/dsummers91
+    - cd github.com/dsummers91
+    - ln -s $CI_PROJECT_DIR go-bmdc
+    - curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
+    - cd ./go-bmdc
+    - dep ensure -vendor-only
 
 test-my-project:
   stage: test
   script:
+    - cd $GOPATH/src/github.com/dsummers91/go-bmdc
     - go test -v -cover ./...
