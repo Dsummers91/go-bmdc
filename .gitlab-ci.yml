@@ -3,7 +3,6 @@ stages:
   - test
 
 before_script:
-  - cd /go/src/github.com/dsummers91/go-bmdc
   - curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
   - dep ensure -vendor-only
 
