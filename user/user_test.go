@@ -6,6 +6,6 @@ import (
 	"gotest.tools/assert"
 )
 
-func TestSuccess(t *testing.T) {
-	assert.Equal(t, 1, 1)
+func TestFail(t *testing.T) {
+	assert.Equal(t, 0, 1)
 }
