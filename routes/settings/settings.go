@@ -70,11 +70,10 @@ func renderTemplate(w http.ResponseWriter, r *http.Request, data SettingsData) {
 		"getField": getField,
 	}).ParseFiles(
 		filepath.Join(cwd, "./routes/settings/settings.html"),
-		filepath.Join(cwd, "./routes/templates/header.html"),
-		filepath.Join(cwd, "./routes/templates/navbar.html"),
-		filepath.Join(cwd, "./routes/templates/footer.html"),
+		filepath.Join(cwd, "./routes/includes/header.html"),
+		filepath.Join(cwd, "./routes/includes/navbar.html"),
+		filepath.Join(cwd, "./routes/includes/footer.html"),
 		filepath.Join(cwd, "./routes/templates/store.html"),
-		filepath.Join(cwd, "./routes/templates/signin.html"),
 		filepath.Join(cwd, "./routes/templates/input_field.html"),
 	)
 	if err != nil {

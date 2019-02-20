@@ -9,6 +9,7 @@ import (
 	"github.com/dsummers91/go-bmdc/app"
 	"github.com/dsummers91/go-bmdc/database"
 	"github.com/dsummers91/go-bmdc/user"
+	"github.com/gorilla/mux"
 	"github.com/mongodb/mongo-go-driver/bson"
 )
 
@@ -22,18 +23,19 @@ type TemplateData struct {
 	User              user.UserProfile
 }
 
-func RenderTemplate(w http.ResponseWriter, r *http.Request, tmpl string, data interface{}) {
+func RenderTemplate(w http.ResponseWriter, r *http.Request) {
+	routeName := mux.CurrentRoute(r).GetName()
+	var data interface{}
 	var user user.UserProfile
 	var profile interface{}
 
 	cwd, _ := os.Getwd()
 	t, err := template.ParseFiles(
-		filepath.Join(cwd, "./routes/"+tmpl+"/"+tmpl+".html"),
-		filepath.Join(cwd, "./routes/templates/header.html"),
-		filepath.Join(cwd, "./routes/templates/navbar.html"),
-		filepath.Join(cwd, "./routes/templates/footer.html"),
+		filepath.Join(cwd, "./routes/"+routeName+"/"+routeName+".html"),
+		filepath.Join(cwd, "./routes/includes/header.html"),
+		filepath.Join(cwd, "./routes/includes/navbar.html"),
+		filepath.Join(cwd, "./routes/includes/footer.html"),
 		filepath.Join(cwd, "./routes/templates/store.html"),
-		filepath.Join(cwd, "./routes/templates/signin.html"),
 	)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)

@@ -15,6 +15,6 @@ func main() {
 	}
 
 	app.Init()
-	server.StartServer()
-
+	server := server.InitServer()
+	server.RunServer()
 }

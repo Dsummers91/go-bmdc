@@ -111,11 +111,10 @@ func renderTemplate(w http.ResponseWriter, r *http.Request, data ProfileData) {
 	cwd, _ := os.Getwd()
 	t, err := template.ParseFiles(
 		filepath.Join(cwd, "./routes/profile/profile.html"),
-		filepath.Join(cwd, "./routes/templates/header.html"),
-		filepath.Join(cwd, "./routes/templates/navbar.html"),
-		filepath.Join(cwd, "./routes/templates/footer.html"),
+		filepath.Join(cwd, "./routes/includes/header.html"),
+		filepath.Join(cwd, "./routes/includes/navbar.html"),
+		filepath.Join(cwd, "./routes/includes/footer.html"),
 		filepath.Join(cwd, "./routes/templates/store.html"),
-		filepath.Join(cwd, "./routes/templates/signin.html"),
 	)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
