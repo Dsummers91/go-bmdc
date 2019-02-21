@@ -11,3 +11,4 @@ tmp/
 
 gin-bin
 logs
+.log

@@ -17,7 +17,7 @@ var (
 )
 
 func Init() error {
-	Store = sessions.NewFilesystemStore("", []byte("ssomething-very-secret"))
+	Store = sessions.NewFilesystemStore("", []byte(os.Getenv("SESSION_SECRET")))
 	Store.Options = &sessions.Options{
 		MaxAge: 86400,
 	}
