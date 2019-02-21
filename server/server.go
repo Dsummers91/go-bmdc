@@ -9,6 +9,7 @@ import (
 	"github.com/codegangsta/negroni"
 	"github.com/dsummers91/go-bmdc/database"
 	"github.com/dsummers91/go-bmdc/routes/callback"
+	"github.com/dsummers91/go-bmdc/routes/contact"
 	"github.com/dsummers91/go-bmdc/routes/image"
 	"github.com/dsummers91/go-bmdc/routes/join"
 	"github.com/dsummers91/go-bmdc/routes/login"
@@ -35,6 +36,7 @@ func InitServer() Server {
 	r.HandleFunc("/logout", logout.LogoutHandler).Name("logout")
 	r.HandleFunc("/terms", templates.RenderTemplate).Methods("GET").Name("terms")
 	r.HandleFunc("/contact", templates.RenderTemplate).Methods("GET").Name("contact")
+	r.HandleFunc("/contact", contact.PostContactHandler).Methods("POST")
 	r.HandleFunc("/privacy", templates.RenderTemplate).Methods("GET").Name("privacy")
 	r.HandleFunc("/shop", templates.RenderTemplate).Methods("GET").Name("shop")
 	r.HandleFunc("/callback", callback.CallbackHandler)
