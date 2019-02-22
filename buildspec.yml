@@ -8,8 +8,6 @@ phases:
 
   pre_build: 
     commands:
-      - go get
-
       # Ensure code passes all lint tests
       - golint -set_exit_status
 
