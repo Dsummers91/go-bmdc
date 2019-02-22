@@ -12,6 +12,8 @@ phases:
       - mv ./* $GOPATH/src/github.com/dsummers91/go-bmdc/
       - cd $GOPATH/src/github.com/dsummers91/go-bmdc
       - curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
+      - dir
+      - pwd
       - dep ensure -vendor-only
 
       # Ensure code passes all lint tests
