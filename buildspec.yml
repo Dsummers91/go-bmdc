@@ -12,7 +12,8 @@ phases:
       - folder=$(pwd)
       - mkdir -p $GOPATH/src/github.com/dsummers91
       - cd $GOPATH/src/github.com/dsummers91
-      - mv $folder ./go-bmdc 
+      - echo $folder
+      - mv $(folder) ./go-bmdc 
       - cd ./go-bmdc
       - dep ensure -vendor-only
       # Ensure code passes all lint tests
