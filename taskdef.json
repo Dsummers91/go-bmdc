@@ -1,0 +1,18 @@
+{
+    "family": "bmdc",
+    "containerDefinitions": [
+        {
+            "image": "544793848984.dkr.ecr.us-west-2.amazonaws.com/bmdc:lastest",
+            "name": "bmdc",
+            "cpu": 10,
+            "memory": 256,
+            "essential": true,
+            "portMappings": [
+                {
+                    "containerPort": 3000,
+                    "hostPort": 80
+                }
+            ]
+        }
+    ]
+}

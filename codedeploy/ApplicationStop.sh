@@ -1,3 +1,3 @@
 #!/bin/bash
-killall app
+killall bmdc-server
 exit 0
