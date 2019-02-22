@@ -2,10 +2,9 @@ package contact
 
 import (
 	"encoding/json"
-	"fmt"
+	"log"
 	"net/http"
-
-	"github.com/dsummers91/go-bmdc/database"
+	"net/smtp"
 )
 
 type postContactDetails struct {
@@ -17,19 +16,28 @@ func PostContactHandler(w http.ResponseWriter, r *http.Request) {
 	var data postContactDetails
 	json.NewDecoder(r.Body).Decode(&data)
 
-	collection, context, cancel := database.Collection("contact")
-	defer cancel()
+	from := "test@deonsummers.com"
+	pass := "Test1234"
+	to := "deonsummers01@gmail.com"
 
-	response, err := collection.InsertOne(context,
-		data,
-	)
+	msg := "From: " + from + "\n" +
+		"To: " + to + "\n" +
+		"Subject: Hello there\n\n" +
+		data.Message
+
+	err := smtp.SendMail("smtp.mail.us-west-2.awsapps.com:465",
+		smtp.PlainAuth("", from, pass, "smtp.mail.us-west-2.awsapps.com"),
+		from, []string{to}, []byte(msg))
 
 	if err != nil {
-		fmt.Println(err)
+		log.Printf("smtp error: %s", err)
+		return
 	}
+
+	log.Print("sent")
 
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 
-	json.NewEncoder(w).Encode(response)
+	json.NewEncoder(w).Encode(data)
 }
