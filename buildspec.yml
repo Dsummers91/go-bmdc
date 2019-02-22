@@ -8,8 +8,6 @@ phases:
 
   pre_build: 
     commands:
-      - curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
-      - dep ensure -vendor-only
 
       # Ensure code passes all lint tests
       - golint -set_exit_status
