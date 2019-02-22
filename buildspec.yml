@@ -8,6 +8,8 @@ phases:
 
   pre_build: 
     commands:
+      - echo dir
+      - tree
       # Ensure code passes all lint tests
       - golint -set_exit_status
 
