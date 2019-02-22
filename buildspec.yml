@@ -9,7 +9,8 @@ phases:
   pre_build: 
     commands:
       - mkdir -p /go/src/github.com/dsummers91/go-bmdc
-      - mv ./* /go/src/github.com/dsummers91
+      - mv ./* /go/src/github.com/dsummers91/go-bmdc
+      - cd /go/src/github.com/dsummers91/go-bmdc
       - curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
       - export GOPATH=/go
       - dep ensure -vendor-only
