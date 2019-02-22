@@ -2,6 +2,7 @@
 .DS_Store
 src/
 bmdc-server
+go-bmdc
 pkg/
 vendor/
 tmp/
