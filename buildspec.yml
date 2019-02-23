@@ -9,10 +9,10 @@ phases:
   pre_build: 
     commands:
       - mkdir -p /go/src/github.com/dsummers91/go-bmdc
-      - dir
-      - mv ./* /go/src/github.com/dsummers91/go-bmdc
+      - folder=$(pwd)
+      - cd ..
+      - mv $folder /go/src/github.com/dsummers91/go-bmdc
       - cd /go/src/github.com/dsummers91/go-bmdc
-      - dir
       - curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
       - dep ensure -vendor-only
 
