@@ -8,11 +8,11 @@ phases:
 
   pre_build: 
     commands:
-      - mkdir -p /go/src/github.com/dsummers91/
-      - ln -s ./ /go/src/github.com/dsummers91/go-bmdc
+      - echo $GOPATH
+      - export GOPATH=/go
+      - echo $GOPATH
       - curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
-      - git init
-      - go get
+      - dep ensure -vendor-only
 
       # Ensure code passes all lint tests
       - golint -set_exit_status
