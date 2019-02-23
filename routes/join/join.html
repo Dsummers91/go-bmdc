@@ -7,7 +7,9 @@
   {{ template "navbar" . }}
 
 <section class="engine"></section><section class="mbr-section form1 mbr-after-navbar" id="form1-l" data-rv-view="31" style="background-color: rgb(31, 42, 47); padding-top: 120px; padding-bottom: 120px;">
-    
+  {{ if not .IsLoggedIn  }}
+    Log in, in order to join
+  {{ end }}
     <div class="mbr-section mbr-section__container mbr-section__container--middle">
         <div class="container">
             <div class="row">

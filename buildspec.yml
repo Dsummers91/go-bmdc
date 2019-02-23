@@ -1,37 +1,26 @@
-version: 0.1
-            
+version: 0.2
+
 phases:
-
-  install: 
+  pre_build:
     commands:
-      - go get -u github.com/golang/lint/golint
-
-  pre_build: 
-    commands:
-      - echo $GOPATH
-      - export GOPATH=/go
-      - GOPATH=/go
-      - echo $GOPATH
-      - curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
-      - dep ensure -vendor-only
-
-      # Ensure code passes all lint tests
-      - golint -set_exit_status
-
-      # Run all tests included with our application
-      - go test
-
+      - echo Logging in to Amazon ECR...
   build:
     commands:
-
-      # Build our application
-      - go build -o bmdc-server
+      - $(aws ecr get-login --region us-west-2 --no-include-email)
+      - echo Build started on `date`
+      - docker-compose run app go test ./...
+      - echo Building the Docker image...          
+      - docker build -t $IMAGE_REPO_NAME:$IMAGE_TAG .
+      - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG      
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Pushing the Docker image...
+      - printf "AUTH0_CLIENT_ID=1CtAElrK7eacL7YPIPJqQlhdrpKx5DdR \nAUTH0_DOMAIN=dsummers91.auth0.comAUTH0_CLIENT_SECRET=iNSa_mpam5xaaniCxPOIdvPnSTi7Ge_sDsASfdVwZV5YnSLDGPkPC8sQ7q-xjI6t\nAUTH0_CALLBACK_URL=http://localhost:3000/callback\nAUTH0_AUDIENCE=\nPORT=3000" > .env
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
+      - printf '[{"name":"bmdc","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
 
 artifacts:
   files:
-    - bmdc-server
-    - appspec.yml
-    - buildspec.yml
-    - config/*
-    - codedeploy/*
-    - cloudformation/*
+    - '**/*'
+  name: bmdc

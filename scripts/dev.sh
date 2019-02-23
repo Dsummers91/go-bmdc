@@ -2,6 +2,8 @@
 
 SESSION_NAME="bmdc"
 
+tmux kill-session -t ${SESSION_NAME} >/dev/null 2>&1
+
 tmux has-session -t ${SESSION_NAME}
 
 if [ $? != 0 ]

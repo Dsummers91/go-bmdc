@@ -10,7 +10,7 @@ $("#editProfile").submit(function( event ) {
   var values = {};
   $inputs.each(function() {
     values[this.name] = $(this).val();
-    if (values[this.name] == "true") {
+    if ($(this).prop("checked")) {
       values[this.name] = true;
     }  else if (values[this.name] == "false") {
       values[this.name] = false
