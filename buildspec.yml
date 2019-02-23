@@ -11,7 +11,9 @@ phases:
       - mkdir -p /go/src/github.com/dsummers91/go-bmdc
       - curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
       - cd /go/src/github.com/dsummers91/go-bmdc
+      - dir
       - mv $CODEBUILD_SRC_DIR /go/src/github.com/dsummers91/go-bmdc
+      - dir
       - dep ensure -vendor-only
 
       # Ensure code passes all lint tests
