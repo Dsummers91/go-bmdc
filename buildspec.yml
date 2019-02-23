@@ -8,13 +8,9 @@ phases:
 
   pre_build: 
     commands:
-      - mkdir -p /go/src/github.com/dsummers91/go-bmdc
-      - curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
-      - cd /go/src/github.com/dsummers91/go-bmdc
-      - dir
-      - mv $CODEBUILD_SRC_DIR /go/src/github.com/dsummers91/go-bmdc
-      - dir
-      - dep ensure -vendor-only
+      - mkdir -p /go/src/github.com/dsummers91/
+      - ln -s ./ /go/src/github.com/dsummers91/go-bmdc
+      - go get
 
       # Ensure code passes all lint tests
       - golint -set_exit_status
