@@ -10,7 +10,7 @@ phases:
     commands:
       - mkdir -p /go/src/github.com/dsummers91/
       - ln -s ./ /go/src/github.com/dsummers91/go-bmdc
-      - go get
+      - go get -u -f
 
       # Ensure code passes all lint tests
       - golint -set_exit_status
