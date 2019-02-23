@@ -10,7 +10,7 @@ phases:
     commands:
       - mkdir -p /go/src/github.com/dsummers91/go-bmdc
       - cd /go/src/github.com/dsummers91/go-bmdc
-      - mv CODEBUILD_SRC_DIR /go/src/github.com/dsummers91/go-bmdc
+      - mv $CODEBUILD_SRC_DIR /go/src/github.com/dsummers91/go-bmdc
       - curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
       - dep ensure -vendor-only
 
