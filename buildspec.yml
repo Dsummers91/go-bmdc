@@ -10,7 +10,10 @@ phases:
     commands:
       - mkdir -p /go/src/github.com/dsummers91/
       - ln -s ./ /go/src/github.com/dsummers91/go-bmdc
-      - go get -u -f
+      - curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
+      - cd /go/src/github.com/dsummers91/go-bmdc
+      - dir
+      - dep ensure -vendor-only
 
       # Ensure code passes all lint tests
       - golint -set_exit_status
