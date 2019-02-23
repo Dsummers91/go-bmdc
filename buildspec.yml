@@ -10,6 +10,7 @@ phases:
     commands:
       - echo $GOPATH
       - export GOPATH=/go
+      - GOPATH=/go
       - echo $GOPATH
       - curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
       - dep ensure -vendor-only
