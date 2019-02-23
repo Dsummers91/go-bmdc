@@ -12,6 +12,7 @@ phases:
       - ln -s ./ /go/src/github.com/dsummers91/go-bmdc
       - curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
       - cd /go/src/github.com/dsummers91/go-bmdc
+      - pwd
       - dir
       - dep ensure -vendor-only
 
