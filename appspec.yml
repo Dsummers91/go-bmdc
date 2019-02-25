@@ -1,5 +1,14 @@
 version: 0.0
 os: linux
+Resources:
+  - TargetService:
+      Type: AWS::ECS::Service
+      Properties:
+        TaskDefinition: <TASK_DEFINITION>
+        LoadBalancerInfo:
+          ContainerName: "bmdc"
+          ContainerPort: 80
+
 files:
   - source: /app
     destination: /opt

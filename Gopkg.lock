@@ -2,9 +2,10 @@
 
 
 [[projects]]
-  digest = "1:05293418615c4ba360872795f277cbc97b0edf7b6206e85a537b11aa8ce392c7"
+  digest = "1:a2bd75a75eb9649f822e8cc4621c3b5b3d94c80541a2c29f68a071fa0e4ec35b"
   name = "github.com/aws/aws-sdk-go"
   packages = [
+    ".",
     "aws",
     "aws/awserr",
     "aws/awsutil",
@@ -40,6 +41,7 @@
     "service/s3",
     "service/s3/s3iface",
     "service/s3/s3manager",
+    "service/ses",
     "service/sts",
   ]
   pruneopts = "UT"
@@ -296,11 +298,14 @@
   analyzer-name = "dep"
   analyzer-version = 1
   input-imports = [
+    "github.com/aws/aws-sdk-go",
     "github.com/aws/aws-sdk-go/aws",
+    "github.com/aws/aws-sdk-go/aws/awserr",
     "github.com/aws/aws-sdk-go/aws/credentials",
     "github.com/aws/aws-sdk-go/aws/session",
     "github.com/aws/aws-sdk-go/service/s3",
     "github.com/aws/aws-sdk-go/service/s3/s3manager",
+    "github.com/aws/aws-sdk-go/service/ses",
     "github.com/codegangsta/negroni",
     "github.com/fatih/structs",
     "github.com/gorilla/mux",
