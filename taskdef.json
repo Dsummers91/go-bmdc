@@ -2,7 +2,7 @@
     "executionRoleArn": "arn:aws:iam::544793848984:role/ecsTaskExecutionRole",
     "containerDefinitions": [
         {
-            "image": "544793848984.dkr.ecr.us-west-2.amazonaws.com/bmdc:lastest",
+            "image": "<IMAGE1_NAME>",
             "name": "bmdc",
             "essential": true,
             "portMappings": [
