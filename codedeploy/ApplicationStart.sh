@@ -1,2 +1,5 @@
-/go/src/github.com/dsummers91/bmdc-server > /dev/null 2> /dev/null < /dev/null &
+#!/bin/bash
+
+docker run -t --detach=true --name bmdc -p 80:3000 bmdc
+
 
