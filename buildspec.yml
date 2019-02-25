@@ -23,5 +23,10 @@ phases:
 
 artifacts:
   files:
-    - '**/*'
+    - 'imagedefinitions.json'
+    - 'bmdc-server'
+    - 'taskdef.json'
+    - 'buildspec.yml'
+    - 'public/*'
+    - 'routes/*'
   name: bmdc
