@@ -27,6 +27,7 @@ artifacts:
     - 'bmdc-server'
     - 'taskdef.json'
     - 'appspec.yml'
+    - 'appspec.yaml'
     - 'buildspec.yml'
     - 'public/*'
     - 'routes/*'
