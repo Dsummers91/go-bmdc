@@ -6,20 +6,10 @@ Resources:
       Properties:
         TaskDefinition: <TASK_DEFINITION>
         LoadBalancerInfo:
-          ContainerName: "bmdc"
-          ContainerPort: 80
-
-files:
-  - source: /app
-    destination: /opt
+          ContainerName: "bmdc-load-balancer"
+          ContainerPort: 3000
 hooks:
   BeforeInstall:
     - location: codedeploy/BeforeInstall.sh
   AfterInstall:
     - location: codedeploy/AfterInstall.sh
-  ApplicationStop:
-    - location: codedeploy/ApplicationStop.sh
-  ApplicationStart:
-    - location: codedeploy/ApplicationStart.sh
-  ValidateService:
-    - location: codedeploy/ValidateService.sh
