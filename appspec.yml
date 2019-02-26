@@ -1,5 +1,4 @@
 version: 0.0
-os: linux
 Resources:
   - TargetService:
       Type: AWS::ECS::Service
@@ -8,8 +7,3 @@ Resources:
         LoadBalancerInfo:
           ContainerName: "bmdc-load-balancer"
           ContainerPort: 3000
-hooks:
-  BeforeInstall:
-    - location: codedeploy/BeforeInstall.sh
-  AfterInstall:
-    - location: codedeploy/AfterInstall.sh
