@@ -2,42 +2,118 @@ package contact
 
 import (
 	"encoding/json"
-	"log"
+	"fmt"
 	"net/http"
-	"net/smtp"
+
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awserr"
+	"github.com/aws/aws-sdk-go/aws/session"
+	"github.com/aws/aws-sdk-go/service/ses"
 )
 
 type postContactDetails struct {
-	Username string `json:"username,omitempty"`
-	Message  string `json:"message,omitempty"`
+	Title   string `json:"username,omitempty"`
+	Message string `json:"message,omitempty"`
 }
+
+const (
+	// Replace sender@example.com with your "From" address.
+	// This address must be verified with Amazon SES.
+	Sender = "deonsummers91@gmail.com"
+
+	// Replace recipient@example.com with a "To" address. If your account
+	// is still in the sandbox, this address must be verified.
+	Recipient = "deonsummers91@gmail.com"
+
+	// Specify a configuration set. To use a configuration
+	// set, comment the next line and line 92.
+	//ConfigurationSet = "ConfigSet"
+
+	// The subject line for the email.
+	Subject = "Amazon SES Test (AWS SDK for Go)"
+
+	// The HTML body for the email.
+	HtmlBody = "<h1>Amazon SES Test Email (AWS SDK for Go)</h1><p>This email was sent with " +
+		"<a href='https://aws.amazon.com/ses/'>Amazon SES</a> using the " +
+		"<a href='https://aws.amazon.com/sdk-for-go/'>AWS SDK for Go</a>.</p>"
+
+	//The email body for recipients with non-HTML email clients.
+	TextBody = "This email was sent with Amazon SES using the AWS SDK for Go."
+
+	// The character encoding for the email.
+	CharSet = "UTF-8"
+)
 
 func PostContactHandler(w http.ResponseWriter, r *http.Request) {
 	var data postContactDetails
 	json.NewDecoder(r.Body).Decode(&data)
 
-	from := "test@deonsummers.com"
-	pass := "Test1234"
-	to := "deonsummers01@gmail.com"
+	sess, err := session.NewSession(&aws.Config{
+		Region: aws.String("us-west-2")},
+	)
 
-	msg := "From: " + from + "\n" +
-		"To: " + to + "\n" +
-		"Subject: Hello there\n\n" +
-		data.Message
+	// Create an SES session.
+	svc := ses.New(sess)
 
-	err := smtp.SendMail("smtp.mail.us-west-2.awsapps.com:465",
-		smtp.PlainAuth("", from, pass, "smtp.mail.us-west-2.awsapps.com"),
-		from, []string{to}, []byte(msg))
+	// Assemble the email.
+	input := &ses.SendEmailInput{
+		Destination: &ses.Destination{
+			CcAddresses: []*string{},
+			ToAddresses: []*string{
+				aws.String(Recipient),
+			},
+		},
+		Message: &ses.Message{
+			Body: &ses.Body{
+				Html: &ses.Content{
+					Charset: aws.String(CharSet),
+					Data:    aws.String(HtmlBody),
+				},
+				Text: &ses.Content{
+					Charset: aws.String(CharSet),
+					Data:    aws.String(TextBody),
+				},
+			},
+			Subject: &ses.Content{
+				Charset: aws.String(CharSet),
+				Data:    aws.String(Subject),
+			},
+		},
+		Source: aws.String(Sender),
+		// Uncomment to use a configuration set
+		//ConfigurationSetName: aws.String(ConfigurationSet),
+	}
 
+	// Attempt to send the email.
+	result, err := svc.SendEmail(input)
+
+	// Display error messages if they occur.
 	if err != nil {
-		log.Printf("smtp error: %s", err)
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case ses.ErrCodeMessageRejected:
+				fmt.Println(ses.ErrCodeMessageRejected, aerr.Error())
+			case ses.ErrCodeMailFromDomainNotVerifiedException:
+				fmt.Println(ses.ErrCodeMailFromDomainNotVerifiedException, aerr.Error())
+			case ses.ErrCodeConfigurationSetDoesNotExistException:
+				fmt.Println(ses.ErrCodeConfigurationSetDoesNotExistException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+
 		return
 	}
 
-	log.Print("sent")
+	fmt.Println("Email Sent to address: " + Recipient)
+	fmt.Println(result)
 
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 
-	json.NewEncoder(w).Encode(data)
+	json.NewEncoder(w).Encode(result)
 }

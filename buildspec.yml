@@ -1,36 +1,35 @@
-version: 0.1
-            
+version: 0.2
+
 phases:
-
-  install: 
+  pre_build:
     commands:
-      - go get -u github.com/golang/lint/golint
-
-  pre_build: 
-    commands:
-      - mkdir -p /go/src/github.com/dsummers91/go-bmdc
-      - curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
-      - cd /go/src/github.com/dsummers91/go-bmdc
-      - mv $CODEBUILD_SRC_DIR /go/src/github.com/dsummers91/go-bmdc
-      - dep ensure -vendor-only
-
-      # Ensure code passes all lint tests
-      - golint -set_exit_status
-
-      # Run all tests included with our application
-      - go test
-
+      - echo Logging in to Amazon ECR...
   build:
     commands:
-
-      # Build our application
-      - go build -o bmdc-server
+      - $(aws ecr get-login --region us-west-2 --no-include-email)
+      - echo Build started on `date`
+      - docker-compose run app go test ./...
+      - echo Building the Docker image...          
+      - printf "AUTH0_CLIENT_ID=1CtAElrK7eacL7YPIPJqQlhdrpKx5DdR\nAUTH0_DOMAIN=dsummers91.auth0.com\nAUTH0_CLIENT_SECRET=iNSa_mpam5xaaniCxPOIdvPnSTi7Ge_sDsASfdVwZV5YnSLDGPkPC8sQ7q-xjI6t\nAUTH0_CALLBACK_URL=http://localhost:3000/callback\nTWITTER_API_KEY=nqLtKTkkehAsc08IUYYmLeIo9\nTWITTER_SECRET_KEY=zj9EUNR7RpRhEf82lJwHs04ieaNT8MZPIMH4ygVw9PZgblxAjq\nTWITTER_TOKEN=1090321124028792834-bpouDrbSEy7M7yJY6Hrf2G0tCVlKux\nTWITTER_TOKEN_SECRET=EjgyAeeld73jKeQ7CTnih3srLAYhgtRRwPKV0mageUBUM\nFACEBOOK_CLIENT_TOKEN=4c96c420b81ff7bc124356aa03c7ad98\nSESSION_SECRET=DSFSFDSkfdn9u32iodsankcfdase32def\nAWS_ACCESS_KEY=AKIAJTIXNMHLMYN536TQ\nAWS_ACCESS_SECRET=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\nAWS_TOKEN=\nS3_BUCKET=blackmendontche.at\nAUTH0_AUDIENCE=\nPORT=80\n" > .env
+      - docker build -t bmdc:lastest .
+      - docker tag bmdc:lastest 544793848984.dkr.ecr.us-west-2.amazonaws.com/bmdc:latest      
+  post_build:
+    commands:
+      - echo $REPOSITORY_URI
+      - echo Build completed on `date`
+      - echo Pushing the Docker image...
+      - docker push 544793848984.dkr.ecr.us-west-2.amazonaws.com/bmdc:latest
+      - printf '[{"name":"bmdc","imageUri":"%s"}]' 44793848984.dkr.ecr.us-west-2.amazonaws.com/bmdc:latest > imagedefinitions.json
 
 artifacts:
   files:
-    - bmdc-server
-    - appspec.yml
-    - buildspec.yml
-    - config/*
-    - codedeploy/*
-    - cloudformation/*
+    - '.env'
+    - 'imagedefinitions.json'
+    - 'bmdc-server'
+    - 'taskdef.json'
+    - 'appspec.yml'
+    - 'appspec.yaml'
+    - 'buildspec.yml'
+    - 'public/*'
+    - 'routes/*'
+  name: bmdc

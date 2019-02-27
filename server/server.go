@@ -16,6 +16,7 @@ import (
 	"github.com/dsummers91/go-bmdc/routes/logout"
 	"github.com/dsummers91/go-bmdc/routes/middlewares"
 	"github.com/dsummers91/go-bmdc/routes/profile"
+	"github.com/dsummers91/go-bmdc/routes/settings"
 	"github.com/dsummers91/go-bmdc/routes/templates"
 	"github.com/gorilla/mux"
 )
@@ -42,7 +43,7 @@ func InitServer() Server {
 	r.HandleFunc("/callback", callback.CallbackHandler)
 	r.Handle("/profile/settings", negroni.New(
 		negroni.HandlerFunc(middlewares.IsAuthenticated),
-		negroni.Wrap(http.HandlerFunc(templates.RenderTemplate)),
+		negroni.Wrap(http.HandlerFunc(settings.SettingsHandler)),
 	)).Name("settings")
 	r.HandleFunc("/profile", profile.PostProfileHandler).Methods("POST")
 	r.HandleFunc("/profile/image", image.PostImageHandler).Methods("POST")

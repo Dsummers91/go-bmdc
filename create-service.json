@@ -1,0 +1,29 @@
+{
+    "taskDefinition": "bmdc:1",
+    "cluster": "bmdc-cluster",
+    "loadBalancers": [
+      {
+        "targetGroupArn": "arn:aws:elasticloadbalancing:us-west-2:544793848984:targetgroup/bmdc-target-group/35b24079ec10f93a",
+        "containerName": "bmdc",
+        "containerPort": 80
+        }
+    ],
+    "desiredCount": 1,
+    "launchType": "FARGATE",
+    "schedulingStrategy": "REPLICA",
+    "deploymentController": {
+        "type": "CODE_DEPLOY"
+    },
+    "networkConfiguration": {
+        "awsvpcConfiguration": {
+            "subnets": [
+                "subnet-0f947f68",
+                "subnet-f5434e83"
+            ],
+            "securityGroups": [
+                "sg-066e21b503880aa20"
+            ],
+            "assignPublicIp": "ENABLED"
+        }
+    }
+}
