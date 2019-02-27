@@ -67,7 +67,7 @@ func PostContactHandler(w http.ResponseWriter, r *http.Request) {
 			Body: &ses.Body{
 				Html: &ses.Content{
 					Charset: aws.String(CharSet),
-					Data:    aws.String(HtmlBody),
+					Data:    aws.String(data.Message),
 				},
 				Text: &ses.Content{
 					Charset: aws.String(CharSet),
@@ -76,7 +76,7 @@ func PostContactHandler(w http.ResponseWriter, r *http.Request) {
 			},
 			Subject: &ses.Content{
 				Charset: aws.String(CharSet),
-				Data:    aws.String(Subject),
+				Data:    aws.String(data.Title),
 			},
 		},
 		Source: aws.String(Sender),

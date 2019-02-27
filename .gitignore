@@ -8,7 +8,7 @@ vendor/
 tmp/
 *.swp
 *.swo
-
+*.env
 
 gin-bin
 logs

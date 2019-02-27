@@ -31,7 +31,7 @@ func RenderTemplate(w http.ResponseWriter, r *http.Request) {
 
 	cwd, _ := os.Getwd()
 	t, err := template.ParseFiles(
-		filepath.Join(cwd, "./routes/"+routeName+"/"+routeName+".html"),
+		filepath.Join(cwd, "./routes/pages/"+routeName+".html"),
 		filepath.Join(cwd, "./routes/includes/header.html"),
 		filepath.Join(cwd, "./routes/includes/navbar.html"),
 		filepath.Join(cwd, "./routes/includes/footer.html"),
