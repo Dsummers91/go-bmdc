@@ -10,7 +10,7 @@ phases:
       - echo Build started on `date`
       - docker-compose run app go test ./...
       - echo Building the Docker image...          
-      - printf "AUTH0_CLIENT_ID=1CtAElrK7eacL7YPIPJqQlhdrpKx5DdR \nAUTH0_DOMAIN=dsummers91.auth0.comAUTH0_CLIENT_SECRET=iNSa_mpam5xaaniCxPOIdvPnSTi7Ge_sDsASfdVwZV5YnSLDGPkPC8sQ7q-xjI6t\nAUTH0_CALLBACK_URL=http://localhost:3000/callback\nAUTH0_AUDIENCE=\nPORT=3000" > .env
+      - printf "AUTH0_CLIENT_ID=1CtAElrK7eacL7YPIPJqQlhdrpKx5DdR \nAUTH0_DOMAIN=dsummers91.auth0.comAUTH0_CLIENT_SECRET=iNSa_mpam5xaaniCxPOIdvPnSTi7Ge_sDsASfdVwZV5YnSLDGPkPC8sQ7q-xjI6t\nAUTH0_CALLBACK_URL=http://localhost:3000/callback\nAUTH0_AUDIENCE=\nPORT=80" > .env
       - docker build -t bmdc:lastest .
       - docker tag bmdc:lastest 544793848984.dkr.ecr.us-west-2.amazonaws.com/bmdc:latest      
   post_build:
