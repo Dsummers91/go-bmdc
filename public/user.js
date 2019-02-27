@@ -18,7 +18,7 @@ $("#editProfile").submit(function( event ) {
   });
 
   $.ajax({
-    url: 'http://localhost:3000/profile',
+    url: '/profile',
     type: 'POST',
     data: JSON.stringify(values),
     contentType: 'application/json; charset=utf-8',
@@ -39,7 +39,7 @@ $("#submitContact").submit(function( event ) {
   });
 
   $.ajax({
-    url: 'http://localhost:3000/contact',
+    url: '/contact',
     type: 'POST',
     data: JSON.stringify(values),
     contentType: 'application/json; charset=utf-8',
