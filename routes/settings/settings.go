@@ -69,7 +69,7 @@ func renderTemplate(w http.ResponseWriter, r *http.Request, data SettingsData) {
 		"dict":     dict,
 		"getField": getField,
 	}).ParseFiles(
-		filepath.Join(cwd, "./routes/settings/settings.html"),
+		filepath.Join(cwd, "./routes/pages/settings.html"),
 		filepath.Join(cwd, "./routes/includes/header.html"),
 		filepath.Join(cwd, "./routes/includes/navbar.html"),
 		filepath.Join(cwd, "./routes/includes/footer.html"),

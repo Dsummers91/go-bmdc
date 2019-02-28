@@ -1,5 +1,4 @@
 {{ define "navbar" }}
-  <section id="ext_menu-0" data-rv-view="0">
 
     <nav class="navbar navbar-dropdown navbar-fixed-top">
         <div class="container">
@@ -56,6 +55,12 @@
         </div>
     </nav>
 
-</section>
+    {{if .IsLoggedIn }}
+      {{ if eq .User.IsMember false }}
+        <section>
+          BECOME A MEMBER TODAY!
+        </section>
+      {{ end }}
+    {{ end }}
 
 {{ end }}

@@ -110,7 +110,7 @@ func GetUserProfileHandler(w http.ResponseWriter, r *http.Request) {
 func renderTemplate(w http.ResponseWriter, r *http.Request, data ProfileData) {
 	cwd, _ := os.Getwd()
 	t, err := template.ParseFiles(
-		filepath.Join(cwd, "./routes/profile/profile.html"),
+		filepath.Join(cwd, "./routes/pages/profile.html"),
 		filepath.Join(cwd, "./routes/includes/header.html"),
 		filepath.Join(cwd, "./routes/includes/navbar.html"),
 		filepath.Join(cwd, "./routes/includes/footer.html"),
