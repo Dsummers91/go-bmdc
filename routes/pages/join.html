@@ -3,26 +3,22 @@
 <head>
   {{ template "header" }}
 </head>
-<body>
-  {{ template "navbar" . }}
+  <body>
+    {{ template "navbar" . }}
 
-<section class="mbr-section form1 mbr-after-navbar" id="form1-l" data-rv-view="31" style="background-color: rgb(31, 42, 47); padding-top: 120px; padding-bottom: 120px;">
-  {{ if not .IsLoggedIn  }}
-    Log in, in order to join
-  {{ end }}
-    <div class="mbr-section mbr-section__container mbr-section__container--middle">
+    <section class="mbr-section form1 mbr-after-navbar" id="form1-l" data-rv-view="31" style="background-color: rgb(31, 42, 47); padding-top: 120px; padding-bottom: 120px;">
+      {{ if not .IsLoggedIn  }}
+          <a href="/login">Log in, in order to join</a>
+      {{ end }}
+      <div class="mbr-section mbr-section__container mbr-section__container--middle">
         <div class="container">
-            <div class="row">
-                <div class="col-xs-12 text-xs-center">
-                    <h3 class="mbr-section-title display-2">Join Us</h3>
-                    <small class="mbr-section-subtitle">Sign up today and we will let you know when BMDC opens its doors.&nbsp;</small>
-                </div>
-            </div>
+          <div class="row">
+            <h2 class="title">Black Men, Don't Cheat</h2>
+            
+          </div>
         </div>
-    </div>
-</section>
-
-  {{ if .IsLoggedIn }} {{.IsLoggedIn}} {{ end }}
-  {{ template "footer" }}
+      </div>
+    </section>
+    {{ template "footer" }}
   </body>
 </html>

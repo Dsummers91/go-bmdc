@@ -1,5 +1,5 @@
 - [ ] Webhook to activate cards
 - [ ] Connect Facebook/Instagram/Twitter
-- [ ] AWS Picture Uploads
+- [x] AWS Picture Uploads
 - [ ] QR Code Geberation
 - [ ] https://blog.gopheracademy.com/advent-2017/kubernetes-ready-service/
