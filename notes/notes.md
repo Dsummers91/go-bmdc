@@ -16,3 +16,6 @@ With the Join Us under them
 On the Membership Benefits Section, do you think there would be a way we could display the profile page.
 
 Not sure if it would be best to just link to a dummy profile so they can see, or would a modal that could be openned be best?
+
+
+https://www.vultr.com/pricing/
